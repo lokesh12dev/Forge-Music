@@ -1,0 +1,150 @@
+{
+  "checkedAt": "2026-10-24T01:12:25.061Z",
+  "base": "https://forge-lossless-addon.invalid",
+  "manifests": [
+    {
+      "source": "monochrome",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/monochrome/manifest.json"
+    },
+    {
+      "source": "archive",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/archive/manifest.json"
+    },
+    {
+      "source": "musopen",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/musopen/manifest.json"
+    },
+    {
+      "source": "netease",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/netease/manifest.json"
+    }
+  ],
+  "upstream": {
+    "searchStatus": 401,
+    "matchingRecording": false,
+    "error": "Verify this device with the current official Forge app. Unsupported devices cannot use this source."
+  },
+  "security": {
+    "mode": "strict",
+    "unauthenticatedApproval": 401,
+    "challengeIssued": true,
+    "fakeEnrollment": 403,
+    "challengeReplay": 401,
+    "browserWaitsForApproval": true,
+    "unsignedAccess": [
+      {
+        "source": "monochrome",
+        "route": "search",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "monochrome",
+        "route": "search",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "monochrome",
+        "route": "stream/untrusted-id",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "monochrome",
+        "route": "stream/untrusted-id",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "archive",
+        "route": "search",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "archive",
+        "route": "search",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "archive",
+        "route": "stream/untrusted-id",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "archive",
+        "route": "stream/untrusted-id",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "musopen",
+        "route": "search",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "musopen",
+        "route": "search",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "musopen",
+        "route": "stream/untrusted-id",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "musopen",
+        "route": "stream/untrusted-id",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "netease",
+        "route": "search",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "netease",
+        "route": "search",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      },
+      {
+        "source": "netease",
+        "route": "stream/untrusted-id",
+        "agent": "BitChord/v1.8.1",
+        "status": 401
+      },
+      {
+        "source": "netease",
+        "route": "stream/untrusted-id",
+        "agent": "Forge/verified-addon-v1",
+        "status": 401
+      }
+    ]
+  },
+  "musopen": {
+    "searchStatus": 401,
+    "candidates": 0,
+    "error": "Verify this device with the current official Forge app. Unsupported devices cannot use this source."
+  },
+  "evidence": {
+    "workflow": "https://github.com/lokesh12dev/Forge-Music/actions/runs/40048690232",
+    "commit": "a2d1dcaffc3e445badfc5f74ddfc8f6dadeb2309",
+    "workerVersion": "75c34db0-80bb-493d-bd7b-1d6e5380e3dc",
+    "nodeTestsPassed": 33,
+    "nativeAndWebSignedRequestRuntime": "passed",
+    "phonePlayback": "not tested for NetEase after deployment"
+  }
+}

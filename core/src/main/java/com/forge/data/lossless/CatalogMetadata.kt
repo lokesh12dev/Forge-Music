@@ -1,0 +1,30 @@
+package com.forge.data.lossless
+
+import com.forge.data.innertube.Innertube
+import com.forge.data.innertube.InnertubeParser
+import com.forge.data.model.Song
+import com.forge.data.model.durationMillis
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
+
+/** Shelf cards can omit runtime. Fetch metadata for the exact video before choosing audio. */
+internal object CatalogMetadata {
+    suspend fun duration(song: Song, known: Long, fetch: suspend (String) -> List<Song> = {
+        InnertubeParser.parseWatchQueue(Innertube.next(it), allVersions = true)
+    }): Long {
+        if (known > 0) return known
+        return try {
+            withContext(Dispatchers.IO) {
+                withTimeoutOrNull(5_000) {
+                    fetch(song.videoId).firstOrNull { it.videoId == song.videoId }?.durationMillis()
+                } ?: 0L
+            }
+        } catch (e: CancellationException) {
+            throw e
+        } catch (_: Exception) {
+            0L
+        }
+    }
+}

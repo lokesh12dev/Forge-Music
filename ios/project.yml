@@ -1,0 +1,47 @@
+# The iOS app's Xcode project, generated with XcodeGen (`xcodegen generate`
+# in this folder) so no .xcodeproj is kept in git. CI does the same.
+name: Forge
+options:
+  bundleIdPrefix: com.forge
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+packages:
+  ForgeCore:
+    path: ForgeCore
+settings:
+  base:
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: ""
+targets:
+  Forge:
+    type: application
+    platform: iOS
+    sources:
+      - path: Forge
+    dependencies:
+      - package: ForgeCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.forge.ios
+        PRODUCT_NAME: Forge
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGN_IDENTITY: ""
+    info:
+      path: Forge/Info.plist
+      properties:
+        CFBundleDisplayName: Forge
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UIBackgroundModes: [audio]
+        UIUserInterfaceStyle: Dark
+        ITSAppUsesNonExemptEncryption: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]

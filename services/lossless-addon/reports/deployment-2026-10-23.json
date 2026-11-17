@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-23T20:52:20.508Z",
+  "base": "https://forge-lossless-addon.invalid",
+  "manifests": [
+    {
+      "source": "monochrome",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/monochrome/manifest.json"
+    },
+    {
+      "source": "archive",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/archive/manifest.json"
+    }
+  ],
+  "upstream": {
+    "searchStatus": 200,
+    "matchingRecording": true,
+    "streamStatus": 200,
+    "flacHeader": {
+      "bitDepth": 16,
+      "sampleRate": 44100,
+      "channels": 2,
+      "duration": 199.42006802721087
+    }
+  }
+}

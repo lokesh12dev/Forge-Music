@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-23T21:56:51.642Z",
+  "base": "https://forge-lossless-addon.invalid",
+  "manifests": [
+    {
+      "source": "monochrome",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/monochrome/manifest.json"
+    },
+    {
+      "source": "archive",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/archive/manifest.json"
+    },
+    {
+      "source": "musopen",
+      "status": 200,
+      "url": "https://forge-lossless-addon.invalid/musopen/manifest.json"
+    }
+  ],
+  "upstream": {
+    "searchStatus": 200,
+    "matchingRecording": true,
+    "streamStatus": 200,
+    "flacHeader": {
+      "bitDepth": 16,
+      "sampleRate": 44100,
+      "channels": 2,
+      "duration": 199.42006802721087
+    }
+  },
+  "security": {
+    "mode": "staged",
+    "unauthenticatedApproval": 401,
+    "challengeIssued": true,
+    "fakeEnrollment": 403,
+    "challengeReplay": 401,
+    "browserWaitsForApproval": true
+  },
+  "musopen": {
+    "searchStatus": 200,
+    "candidates": 1,
+    "streamStatus": 200,
+    "flacHeader": {
+      "bitDepth": 16,
+      "sampleRate": 44100,
+      "channels": 2,
+      "duration": 339.97333333333336
+    }
+  }
+}

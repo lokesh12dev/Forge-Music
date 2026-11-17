@@ -1,0 +1,67 @@
+# Forge — Licence and Non-Disclosure Agreement
+
+Copyright © M.Lokesh. All rights reserved.
+
+Forge is proprietary software. The source code in this repository is made
+visible for transparency and personal evaluation only; making it visible does
+not make it open, and viewing it binds you to this agreement.
+
+## 1. What you may do
+
+You may read this code, build it for yourself, and run it on your own devices
+for personal, non-commercial use.
+
+## 2. What you may not do
+
+- You may not copy, modify, merge, publish, distribute, sublicense, sell or
+  redistribute any part of Forge or its source code, in source or binary
+  form, in whole or in part.
+- You may not use Forge or its source code to build, train, improve or
+  support a competing product, service or library.
+- You may not remove, obscure or alter any copyright, trademark or other
+  proprietary notice in the software.
+
+## 3. Confidentiality (non-disclosure)
+
+The source code, and everything you learn from it that is not public —
+including unpublished designs, algorithms, endpoints, keys, protocols,
+roadmaps and build/publishing details — is the confidential information of
+M.Lokesh. By viewing, cloning, building or using this repository you agree to:
+
+- keep that information strictly confidential;
+- use it only to run Forge for your own personal use;
+- never disclose it to anyone else, in any form, without M.Lokesh's prior
+  written permission;
+- destroy or return it on request.
+
+This duty survives indefinitely, whether or not you continue to use Forge.
+
+## 4. Public materials
+
+Only the released app packages, the website and the documentation published
+by the project are public. Nothing else is. A public GitHub repository is not
+a public licence, and no other licence applies.
+
+## 5. Contributions
+
+Contributions are welcome under the terms in CONTRIBUTING.md. Submitting a
+contribution assigns its rights to M.Lokesh and binds the contributor to the
+confidentiality terms above.
+
+## 6. Third-party services
+
+Forge plays media from third-party services (including YouTube Music and
+JioSaavn) through add-ons. Those services' own terms govern your use of them.
+
+## 7. No warranty
+
+Forge is provided "as is", without warranty of any kind, express or implied.
+M.Lokesh is not liable for any claim, damages or liability arising from the
+use of the software.
+
+## 8. Termination
+
+Any breach of this agreement ends your right to view, build or use Forge
+immediately. M.Lokesh may also withdraw viewing rights at any time.
+
+Contact: https://github.com/lokesh12dev
