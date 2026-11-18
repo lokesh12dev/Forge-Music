@@ -38,8 +38,8 @@ import java.util.concurrent.TimeUnit
 object Support {
     val REPO: String get() = com.opentune.data.config.RemoteConfig.current.github
     const val UPI_ID = "whoosthis@axl"
-    private const val PAYEE = "OpenTune"
-    private const val NOTE = "Support OpenTune"
+    private const val PAYEE = "Forge"
+    private const val NOTE = "Support Forge"
     /** Suggested amounts, in rupees. */
     val AMOUNTS = listOf(49, 99, 199, 499)
 

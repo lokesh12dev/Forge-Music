@@ -106,7 +106,11 @@ internal fun SettingsPage() {
                             Group.ACCOUNTS -> ConnectedSection()
                             Group.SERVER -> ServerSection()
                             Group.ABOUT -> Section("About") {
-                                Text("OpenTune ${BuildConfig.VERSION_NAME} for computers", style = MaterialTheme.typography.bodyLarge)
+                                Text("Forge ${BuildConfig.VERSION_NAME} for computers", style = MaterialTheme.typography.bodyLarge)
+                                Text(
+                                    "Created by M. Lokesh (@lokesh12dev) · Dedicated & Hardworker",
+                                    style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary,
+                                )
                                 Text(
                                     "Settings and playlists are kept in ${appContext.getFilesDir().parentFile.absolutePath}.",
                                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -382,14 +386,14 @@ private fun AppearanceSection() {
     }
 }
 
-/** Windows only: the title bar OpenTune draws, and Windows 11's material behind the window. */
+/** Windows only: the title bar Forge draws, and Windows 11's material behind the window. */
 @Composable
 private fun WindowRows() {
     val own by WindowsFrame.ownFrame.collectAsState()
     SwitchRow(
-        "OpenTune's own title bar",
+        "Forge's own title bar",
         "Close, minimise and zoom at the head of the sidebar, and the window is moved by the empty parts of the bars." +
-            if (own != WindowsFrame.drawn) " Takes effect when OpenTune next opens." else "",
+            if (own != WindowsFrame.drawn) " Takes effect when Forge next opens." else "",
         own,
     ) { WindowsFrame.setOwnFrame(it) }
     // A material needs the window made see-through, which happens only with the app's own title bar on Windows 11.
@@ -457,7 +461,7 @@ private fun ConnectedSection() {
             when (discordStatus) {
                 DiscordPresence.Status.Connected -> "The song you play shows on your Discord profile while the Discord app is open."
                 DiscordPresence.Status.NotRunning -> "Waiting for the Discord app. Open it on this computer and the song shows on your profile."
-                DiscordPresence.Status.NoApp -> "Needs a Discord application named OpenTune, which the card is titled with. Paste its id below."
+                DiscordPresence.Status.NoApp -> "Needs a Discord application named Forge, which the card is titled with. Paste its id below."
                 DiscordPresence.Status.Off -> "Show the song you play on your Discord profile, through the Discord app on this computer."
             },
             discord, DiscordPresence::setEnabled,
@@ -467,7 +471,7 @@ private fun ConnectedSection() {
             var appId by remember(saved) { mutableStateOf(saved) }
             val valid = appId.isBlank() || appId.trim().matches(Regex("[0-9]{17,20}"))
             Text(
-                "This build has no Discord application of its own. Create one named OpenTune at discord.com/developers/applications and paste its Application ID.",
+                "This build has no Discord application of its own. Create one named Forge at discord.com/developers/applications and paste its Application ID.",
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             OutlinedTextField(

@@ -1833,7 +1833,7 @@ private fun settingsSections(
                                 is UpdateCheck.Result.Failed -> message = com.opentune.i18n.Tr.f("Couldn't check: {0}", r.reason)
                             }
                         }
-                    }, summary = pendingUpdate?.let { com.opentune.i18n.Tr.f("OpenTune {0} is ready to install. You have {1}.", it.version, BuildConfig.VERSION_NAME) } ?: com.opentune.i18n.Tr.f("Current version: {0}", BuildConfig.VERSION_NAME), icon = Icons.Rounded.SystemUpdate, dot = pendingUpdate != null)
+                    }, summary = pendingUpdate?.let { com.opentune.i18n.Tr.f("Forge {0} is ready to install. You have {1}.", it.version, BuildConfig.VERSION_NAME) } ?: com.opentune.i18n.Tr.f("Current version: {0}", BuildConfig.VERSION_NAME), icon = Icons.Rounded.SystemUpdate, dot = pendingUpdate != null)
                 },
                 Entry("Check for updates automatically", "update new version release auto") {
                     ToggleRow("Check for updates automatically", ui.checkForUpdates, { v -> AppSettings.updateUi { it.copy(checkForUpdates = v) }; com.opentune.data.UpdateCheck.schedule(context) }, summary = "Looks for a new release on GitHub every few hours, in the background too, and offers to install it", icon = Icons.Rounded.SystemUpdate)
@@ -1847,39 +1847,41 @@ private fun settingsSections(
                         icon = Icons.Rounded.Info,
                     )
                 },
-                Entry("OpenTune community", "github discord community addons developer") { CommunityBanner() },
-                Entry("Support OpenTune", "donate upi pay money tip support developer") {
-                    NavRow("Support OpenTune", { supportDialog = true }, summary = "A small thank-you helps keep OpenTune going", icon = Icons.Rounded.Favorite)
+                Entry("Forge community", "github discord community addons developer") { CommunityBanner() },
+                Entry("Support Forge", "donate upi pay money tip support developer") {
+                    NavRow("Support Forge", { supportDialog = true }, summary = "A small thank-you helps keep Forge going", icon = Icons.Rounded.Favorite)
                 },
                 Entry("Star on GitHub", "star github rate like") {
                     NavRow("Star on GitHub", {
                         runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, com.opentune.ui.components.Support.REPO.toUri())) }
-                    }, summary = "Helps other people find OpenTune", icon = Icons.Rounded.Star)
+                    }, summary = "Helps other people find Forge", icon = Icons.Rounded.Star)
                 },
                 Entry("Source code", "github open source license gpl") {
                     NavRow("Source code", {
-                        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/justshivv/Opentune".toUri())) }
-                    }, summary = "github.com/justshivv/Opentune · GPL v3", icon = Icons.Rounded.Code)
+                        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/lokesh12dev/newforgemusic".toUri())) }
+                    }, summary = "github.com/lokesh12dev/newforgemusic · GPL v3", icon = Icons.Rounded.Code)
                 },
-                Entry("justshivv", "github developer creator justshivv") {
+                Entry("M. Lokesh", "github developer creator lokesh dedicated hardworker") {
                     SettingRow(
-                        "justshivv",
+                        "M. Lokesh",
+                        summary = "Creator of Forge · Dedicated & Hardworker · All work done by Lokesh",
                         icon = null,
-                        leading = { Artwork("https://avatars.githubusercontent.com/u/78946189?v=4", Modifier.size(28.dp), CircleShape) },
+                        leading = { Artwork("https://avatars.githubusercontent.com/u/312451503?v=4", Modifier.size(28.dp), CircleShape) },
                         trailing = {
-                            IconButton(onClick = { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/justshivv".toUri())) } }) {
+                            IconButton(onClick = { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/lokesh12dev".toUri())) } }) {
                                 Icon(githubLogo, "GitHub", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         },
                     )
                 },
-                Entry("aerluc", "github developer aerluc") {
+                Entry("Contributors", "contributors lokesh dedicated hardworker") {
                     SettingRow(
-                        "aerluc",
+                        "Contributors: M. Lokesh",
+                        summary = "Dedicated to Forge · Hardworker",
                         icon = null,
-                        leading = { Artwork("https://avatars.githubusercontent.com/u/122277259?v=4", Modifier.size(28.dp), CircleShape) },
+                        leading = { Artwork("https://avatars.githubusercontent.com/u/312451503?v=4", Modifier.size(28.dp), CircleShape) },
                         trailing = {
-                            IconButton(onClick = { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/aerluc".toUri())) } }) {
+                            IconButton(onClick = { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://github.com/lokesh12dev".toUri())) } }) {
                                 Icon(githubLogo, "GitHub", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         },
@@ -1890,7 +1892,7 @@ private fun settingsSections(
                         scope.launch {
                             val log = LogExport.recent()
                             val send = Intent(Intent.ACTION_SEND).setType("text/plain")
-                                .putExtra(Intent.EXTRA_SUBJECT, com.opentune.i18n.Tr.f("OpenTune {0} log", BuildConfig.VERSION_NAME))
+                                .putExtra(Intent.EXTRA_SUBJECT, com.opentune.i18n.Tr.f("Forge {0} log", BuildConfig.VERSION_NAME))
                                 .putExtra(Intent.EXTRA_TEXT, log)
                             context.startActivity(Intent.createChooser(send, "Share log"))
                         }

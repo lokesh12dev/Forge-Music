@@ -42,32 +42,33 @@ class UpdateCheckTest {
     }
 
     @Test fun readsTheVersionFromAnApkName() {
+        assertEquals("0.5.0", Updater.versionOf("Forge-v0.5.0-arm64-v8a.apk"))
         assertEquals("0.5.0", Updater.versionOf("OpenTune-v0.5.0-arm64-v8a.apk"))
-        assertEquals("0.4.10", Updater.versionOf("OpenTune-v0.4.10-universal.apk"))
-        assertEquals("1.2", Updater.versionOf("OpenTune-v1.2-x86_64.apk"))
-        assertNull(Updater.versionOf("OpenTune-v0.5.0-arm64-v8a.apk.part"))
+        assertEquals("0.4.10", Updater.versionOf("Forge-v0.4.10-universal.apk"))
+        assertEquals("1.2", Updater.versionOf("Forge-v1.2-x86_64.apk"))
+        assertNull(Updater.versionOf("Forge-v0.5.0-arm64-v8a.apk.part"))
         assertNull(Updater.versionOf("notes.txt"))
     }
 
     @Test fun readsSha256sumOutput() {
         val sums = """
-            0f1e2d3c  OpenTune-v0.3.0-arm64-v8a.apk
-            aabbccdd *OpenTune-v0.3.0-universal.apk
+            0f1e2d3c  Forge-v0.3.0-arm64-v8a.apk
+            aabbccdd *Forge-v0.3.0-universal.apk
         """.trimIndent()
-        assertEquals("0f1e2d3c", Updater.expectedSum(sums, "OpenTune-v0.3.0-arm64-v8a.apk"))
-        assertEquals("aabbccdd", Updater.expectedSum(sums, "OpenTune-v0.3.0-universal.apk"))
-        assertNull(Updater.expectedSum(sums, "OpenTune-v0.3.0-x86_64.apk"))
+        assertEquals("0f1e2d3c", Updater.expectedSum(sums, "Forge-v0.3.0-arm64-v8a.apk"))
+        assertEquals("aabbccdd", Updater.expectedSum(sums, "Forge-v0.3.0-universal.apk"))
+        assertNull(Updater.expectedSum(sums, "Forge-v0.3.0-x86_64.apk"))
     }
 
     @Test fun readsTheLatestReleaseFromWhereTheReleasesPageLeads() {
-        val r = UpdateCheck.fromPage("https://github.com/justshivv/Opentune/releases/tag/v0.3.3", listOf("arm64-v8a", "armeabi-v7a"))!!
+        val r = UpdateCheck.fromPage("https://github.com/lokesh12dev/newforgemusic/releases/tag/v0.3.3", listOf("arm64-v8a", "armeabi-v7a"))!!
         assertEquals("0.3.3", r.version)
-        assertEquals("OpenTune-v0.3.3-arm64-v8a.apk", r.apk?.name)
-        assertEquals("https://github.com/justshivv/Opentune/releases/download/v0.3.3/OpenTune-v0.3.3-arm64-v8a.apk", r.apk?.url)
-        assertEquals("https://github.com/justshivv/Opentune/releases/download/v0.3.3/SHA256SUMS.txt", r.sums?.url)
+        assertEquals("Forge-v0.3.3-arm64-v8a.apk", r.apk?.name)
+        assertEquals("https://github.com/lokesh12dev/newforgemusic/releases/download/v0.3.3/Forge-v0.3.3-arm64-v8a.apk", r.apk?.url)
+        assertEquals("https://github.com/lokesh12dev/newforgemusic/releases/download/v0.3.3/SHA256SUMS.txt", r.sums?.url)
         // A processor releases have no APK of their own for gets the universal one.
-        assertEquals("OpenTune-v0.3.3-universal.apk", UpdateCheck.fromPage("https://github.com/justshivv/Opentune/releases/tag/v0.3.3", listOf("riscv64"))!!.apk?.name)
+        assertEquals("Forge-v0.3.3-universal.apk", UpdateCheck.fromPage("https://github.com/lokesh12dev/newforgemusic/releases/tag/v0.3.3", listOf("riscv64"))!!.apk?.name)
         // No release yet: the page stays on the release list.
-        assertNull(UpdateCheck.fromPage("https://github.com/justshivv/Opentune/releases", listOf("arm64-v8a")))
+        assertNull(UpdateCheck.fromPage("https://github.com/lokesh12dev/newforgemusic/releases", listOf("arm64-v8a")))
     }
 }

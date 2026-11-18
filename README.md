@@ -33,9 +33,13 @@ documented in [service integrations](docs/service-integrations.md).
 ## See it
 
 <p align="center">
-  <a href="docs/media/opentune-reel.mp4"><img src="docs/media/preview.gif" alt="Forge in 40 seconds" width="300" height="533"></a>
+  <img src="docs/screenshots/forge-desktop.png" alt="Forge Player Interface" width="100%">
+</p>
+
+<p align="center">
+  <a href="docs/media/forge-reel.mp4"><img src="docs/media/preview.gif" alt="Forge in 40 seconds" width="300" height="533"></a>
   <br>
-  <sub><a href="docs/media/opentune-reel.mp4">Watch the 40-second video</a> (MP4, with sound)</sub>
+  <sub><a href="docs/media/forge-reel.mp4">Watch the 40-second video</a> (MP4, with sound)</sub>
 </p>
 
 <table>
@@ -745,7 +749,7 @@ already on the phone, and a CI runner's debug key changes from run to run.
 ## Project layout
 
 ```
-app/src/main/java/com/opentune/
+app/src/main/java/
   data/innertube/   Innertube client and parser, StreamResolver (engine switch),
                     InnerTubeXResolver, PoToken WebView
   data/             account, downloads, library, history, lyrics, loudness, settings
@@ -763,6 +767,12 @@ docs/               README banner, screenshots and the 40-second video
 The README's screenshots are drawn from the app's own screens by
 `ReadmeScreenshotTest`, which runs when `FORGE_SHOT_ART` points at a
 folder of cover images (they aren't kept in the repository).
+
+## Creator & Contributors
+
+Forge is created and actively developed by:
+
+- **M. Lokesh** ([@lokesh12dev](https://github.com/lokesh12dev)) — **Creator of Forge**. All work is done by M. Lokesh. Dedicated contributor and hardworker.
 
 ## Disclaimer
 

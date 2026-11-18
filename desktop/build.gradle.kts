@@ -270,11 +270,11 @@ compose.desktop {
             // What each system's own installer tools make; the AppImage and the portable zip are wrapped
             // around createDistributable's app image by CI (see packaging/appimage.sh).
             targetFormats(TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Dmg, TargetFormat.Deb, TargetFormat.Rpm)
-            packageName = "OpenTune"
+            packageName = "Forge"
             // Installers need MAJOR.MINOR.BUILD with MAJOR above 0; the app's own version shows inside.
             packageVersion = "1.0.$appVersionCode"
             description = "A music player for YouTube Music"
-            vendor = "OpenTune"
+            vendor = "Forge"
             // What jlink's scan suggests, plus scripting for Rhino, java.sql for the library and EC ciphers for HTTPS.
             modules("java.instrument", "java.management", "java.net.http", "java.scripting", "java.sql", "jdk.crypto.ec", "jdk.dynalink", "jdk.httpserver", "jdk.jfr", "jdk.unsupported")
             macOS {
@@ -283,7 +283,7 @@ compose.desktop {
             }
             windows {
                 iconFile.set(project.file("packaging/icons/AppIcon.ico"))
-                menuGroup = "OpenTune"
+                menuGroup = "Forge"
                 upgradeUuid = "6c1f6c2e-5a3b-4d34-9a51-0e9c1d8f2a71"
             }
             linux {

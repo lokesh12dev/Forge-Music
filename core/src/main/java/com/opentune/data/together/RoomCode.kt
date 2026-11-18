@@ -33,9 +33,9 @@ class RoomCode private constructor(val raw: String) {
     /** The plain text of a [seal]ed message, or null if it isn't one of this room's. */
     fun open(sealed: String): String? = gcmOpen(key, tag, sealed)
 
-    /** A link that opens the room in OpenTune. */
+    /** A link that opens the room in Forge. */
     val appLink: String get() = "opentune://together/$raw"
-    val link: String get() = "https://justshivv.github.io/Opentune/together/#code=$raw"
+    val link: String get() = "https://lokesh12dev.github.io/newforgemusic/together/#code=$raw"
 
     override fun equals(other: Any?) = other is RoomCode && other.raw == raw
     override fun hashCode() = raw.hashCode()
@@ -56,8 +56,9 @@ class RoomCode private constructor(val raw: String) {
             val value = text.trim()
             val uri = runCatching { java.net.URI(value) }.getOrNull()
             val candidate = when {
-                uri?.scheme.equals("opentune", ignoreCase = true) && uri?.host == "together" -> uri.path.trim('/')
-                uri?.scheme == "https" && uri.host == "justshivv.github.io" && uri.path.trimEnd('/') == "/Opentune/together" ->
+                (uri?.scheme.equals("opentune", ignoreCase = true) || uri?.scheme.equals("forge", ignoreCase = true)) && uri?.host == "together" -> uri.path.trim('/')
+                uri?.scheme == "https" && (uri.host == "lokesh12dev.github.io" || uri.host == "justshivv.github.io") &&
+                    (uri.path.trimEnd('/') == "/newforgemusic/together" || uri.path.trimEnd('/') == "/Opentune/together") ->
                     uri.fragment?.takeIf { it.startsWith("code=") }?.removePrefix("code=") ?: return null
                 uri?.scheme != null -> return null
                 else -> value

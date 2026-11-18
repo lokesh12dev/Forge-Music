@@ -151,10 +151,10 @@ private fun PairPhonePanel(remote: TvRemote, onClose: () -> Unit) {
             Text("Pair a phone", style = MaterialTheme.typography.headlineMedium)
             Text(
                 when {
-                    done -> "Paired. Open OpenTune on the phone, then Settings, Link a device, TV, to use it as a remote."
+                    done -> "Paired. Open Forge on the phone, then Settings, Link a device, TV, to use it as a remote."
                     problem != null -> problem!!
                     link == null -> "That code ran out. Make a new one."
-                    else -> "On your phone, open OpenTune, then Settings, Link a device, TV, Control this TV, and scan this code. Both must be on the same Wi-Fi. It lasts two minutes."
+                    else -> "On your phone, open Forge, then Settings, Link a device, TV, Control this TV, and scan this code. Both must be on the same Wi-Fi. It lasts two minutes."
                 },
                 style = MaterialTheme.typography.bodyLarge, color = TvColors.TextDim,
             )
@@ -211,7 +211,7 @@ private fun SignInPanel(onClose: () -> Unit) {
         try {
             val current = withContext(Dispatchers.IO) { PairingReceiver() }
             receiver = current
-            status = "On your phone, open OpenTune, go to Settings, then Link a device, then TV, and scan this code. Both must be on the same Wi-Fi. It lasts two minutes."
+            status = "On your phone, open Forge, go to Settings, then Link a device, then TV, and scan this code. Both must be on the same Wi-Fi. It lasts two minutes."
             withContext(Dispatchers.IO) { current.receive { cookie -> AccountStore.signIn(cookie); true } }
             done = true
             status = "Signed in. Your YouTube Music account is on this TV."

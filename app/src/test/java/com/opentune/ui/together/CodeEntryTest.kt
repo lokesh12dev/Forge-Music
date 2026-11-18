@@ -43,6 +43,7 @@ class CodeEntryTest {
         assertEquals(code.raw, CodeEntry.accept("", code.appLink).raw)
         // Pasted after a half-typed code, and inside the message the share button sends.
         assertEquals(code.raw, CodeEntry.accept("AB", "AB" + code.link).raw)
+        assertEquals(code.raw, CodeEntry.accept("", "Listen with me on Forge. Room code: ${code.pretty}\n${code.link}").raw)
         assertEquals(code.raw, CodeEntry.accept("", "Listen with me on OpenTune. Room code: ${code.pretty}\n${code.link}").raw)
     }
 
