@@ -27,12 +27,12 @@ def prepare(commit, output):
     (output / 'fdroid').mkdir(exist_ok=True)
     (output / 'fdroid/com.opentune.yml').write_text(template)
     (output / 'release.json').write_text(json.dumps({
-        'name': 'OpenTune', 'packageName': 'com.opentune', 'versionName': version,
+        'name': 'Forge', 'packageName': 'com.opentune', 'versionName': version,
         'versionCode': code, 'sourceCommit': commit,
-        'website': 'https://justshivv.github.io/Opentune/',
-        'privacyPolicy': 'https://justshivv.github.io/Opentune/privacy/',
-        'sourceCode': 'https://github.com/justshivv/Opentune',
-        'releasePage': 'https://github.com/justshivv/Opentune/releases/latest',
+        'website': 'https://lokesh12dev.github.io/newforgemusic/',
+        'privacyPolicy': 'https://lokesh12dev.github.io/newforgemusic/privacy/',
+        'sourceCode': 'https://github.com/lokesh12dev/newforgemusic',
+        'releasePage': 'https://github.com/lokesh12dev/newforgemusic/releases/latest',
         'fdroidStatus': 'Submission draft; source build and scanner review required',
     }, indent=2) + '\n')
     shutil.copy(ROOT / 'docs/publishing.md', output / 'PUBLISHING.md')

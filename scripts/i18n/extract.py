@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Finds the words OpenTune shows, for translating.
+Finds the words Forge shows, for translating.
 
     python3 scripts/i18n/extract.py            # writes scripts/i18n/keys.json, prints a summary
     python3 scripts/i18n/extract.py missing hi # the keys Hindi has no translation for yet

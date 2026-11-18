@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://justshivv.github.io/Opentune/'
+BASE = 'https://lokesh12dev.github.io/newforgemusic/'
 
 class Page(HTMLParser):
     def __init__(self, text):
@@ -37,9 +37,9 @@ assert 100 <= len(home.matches('meta', name='description')[0]['content']) <= 170
 assert home.matches('meta', name='twitter:title') and home.matches('meta', name='twitter:description')
 assert home.matches('meta', property='og:image')[0]['content'] == BASE + 'img/share-card-v3.jpg'
 app = next(x for x in home.ld if x['@type'] == 'SoftwareApplication')
-assert app['name'] == 'OpenTune' and app['url'] == BASE and app['offers']['price'] == '0'
+assert app['name'] == 'Forge' and app['url'] == BASE and app['offers']['price'] == '0'
 assert 'aggregateRating' not in app
-assert app['downloadUrl'] == 'https://github.com/justshivv/Opentune/releases/latest'
+assert app['downloadUrl'] == 'https://github.com/lokesh12dev/newforgemusic/releases/latest'
 assert len(home.matches('details')) >= 6
 assert home.matches('a', href='privacy/')
 for tag, attrs in home.tags:

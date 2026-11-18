@@ -13,7 +13,7 @@
   /* Releases. releases.json is written next to this page each time the site deploys, and
      the site deploys after every release, so it names the newest build without an edit.
      GitHub's API is asked as well for download counts, when its hourly limit allows. */
-  const LATEST_PAGE = "https://github.com/lokesh12dev/newforgemusic/releases/latest";
+  const LATEST_PAGE = "https://github.com/lokesh12dev/newforgemusic/releases";
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const mb = (bytes) => (bytes / 1048576).toFixed(1) + " MB";
   const ago = (iso) => {
@@ -86,16 +86,19 @@
   const published = (list) => (Array.isArray(list) ? list.filter((r) => !r.draft && !r.prerelease) : []);
   const getJson = (url, opts) => fetch(url, opts).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
   let shown = false;
+  let liveLoaded = false;
   getJson("releases.json", { cache: "no-cache" }).then(published)
     .then((list) => { if (list.length) { renderReleases(list, false); shown = true; } })
     .catch(() => {})
     .then(() => getJson("https://api.github.com/repos/lokesh12dev/newforgemusic/releases?per_page=10"))
     .then(published)
-    .then((list) => { if (list.length) { renderReleases(list, true); shown = true; } })
+    .then((list) => { liveLoaded = true; if (list.length) { renderReleases(list, true); shown = true; } })
     .catch(() => {})
     .then(() => {
       if (shown) return;
-      $("rel-source").innerHTML = 'Couldn\'t load the list just now. <a href="https://github.com/lokesh12dev/newforgemusic/releases">See every release on GitHub</a>.';
+      $("rel-source").innerHTML = liveLoaded
+        ? 'No public release is available yet. <a href="https://github.com/lokesh12dev/newforgemusic/releases">Check GitHub Releases</a>.'
+        : 'Couldn\'t load the list just now. <a href="https://github.com/lokesh12dev/newforgemusic/releases">See every release on GitHub</a>.';
     });
 
   getJson("https://api.github.com/repos/lokesh12dev/newforgemusic")
