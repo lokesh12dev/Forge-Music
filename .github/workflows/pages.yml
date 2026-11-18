@@ -84,7 +84,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p site/ios
-          cp ios/Forge/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png site/ios/icon.png
+          cp ios/OpenTune/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png site/ios/icon.png
           if ! gh api "repos/${{ github.repository }}/releases/tags/ios" > ios-release.json 2>/dev/null; then
             echo "No iOS build published yet"; rm -f ios-release.json; exit 0
           fi
