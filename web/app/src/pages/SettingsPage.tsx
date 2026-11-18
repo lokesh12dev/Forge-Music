@@ -331,7 +331,7 @@ export default function SettingsPage() {
               <ExternalRow href={links.tv} icon={<Glyph Icon={Tv} color="#3478f6" />} title="Forge on TV" />
               <ExternalRow href="https://lokesh12dev.github.io/Forge-Music/addons/" icon={<Glyph Icon={Wrench} color="#e5483a" />} title="Build an add-on" />
               <ExternalRow href={links.github} icon={<Glyph Icon={SiGithub} color="#24292f" />} title="Source code" value="GitHub" />
-              <ExternalRow href={links.discord} icon={<Glyph Icon={SiDiscord} color="#5865f2" />} title="Community" value="Discord" />
+              <ExternalRow href={links.community} icon={<Glyph Icon={SiGithub} color="#24292f" />} title="Community" value="Discussions" />
             </section>
             <p className={settingsUi.footer}>Forge is free and open source. Report bugs, suggest features and share the add-ons you build.</p>
           </Section>
