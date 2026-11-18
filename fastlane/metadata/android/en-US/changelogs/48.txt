@@ -1,0 +1,4 @@
+• First release from the Forge-Music repository.
+• The complete Forge 1.1.0 feature set: a Home built around you, Automix, bit-perfect output and Forge for TV.
+• Synced lyrics, offline downloads, live radio, podcasts and listening together.
+• Refreshed documentation, downloads and the creator section.

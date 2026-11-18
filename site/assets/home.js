@@ -89,7 +89,7 @@
   getJson("releases.json", { cache: "no-cache" }).then(published)
     .then((list) => { if (list.length) { renderReleases(list, false); shown = true; } })
     .catch(() => {})
-    .then(() => getJson("https://api.github.com/repos/forge/Forge/releases?per_page=10"))
+    .then(() => getJson("https://api.github.com/repos/lokesh12dev/Forge-Music/releases?per_page=10"))
     .then(published)
     .then((list) => { if (list.length) { renderReleases(list, true); shown = true; } })
     .catch(() => {})
@@ -98,7 +98,7 @@
       $("rel-source").innerHTML = 'Couldn\'t load the list just now. <a href="https://github.com/lokesh12dev/Forge-Music/releases">See every release on GitHub</a>.';
     });
 
-  getJson("https://api.github.com/repos/forge/Forge")
+  getJson("https://api.github.com/repos/lokesh12dev/Forge-Music")
     .then((repo) => {
       if (!(repo.stargazers_count > 0)) return;
       const s = $("stars");

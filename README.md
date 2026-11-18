@@ -766,4 +766,11 @@ The README's screenshots are drawn from the app's own screens by
 `ReadmeScreenshotTest`, which runs when `FORGE_SHOT_ART` points at a
 folder of cover images (they aren't kept in the repository).
 
+## About the creator
 
+Forge is created by **M. Lokesh** ([@lokesh12dev](https://github.com/lokesh12dev)).
+Building it is a full-time commitment, carried forward with hard work,
+dedication and discipline.
+
+- **Location:** Chennai, ECR
+- **GitHub:** [@lokesh12dev](https://github.com/lokesh12dev)

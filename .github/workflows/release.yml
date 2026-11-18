@@ -91,7 +91,8 @@ jobs:
           set -euo pipefail
           for apk in app/build/outputs/apk/release/*.apk tv/build/outputs/apk/release/*.apk; do
             certificate="$("$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs "$apk")"
-            printf '%s\n' "$certificate" | grep -F 'Signer #1 certificate SHA-256 digest: 23e77142d7f0ae4d65e5e5a3dccb8e735c0042e93ffd29ab5fafe2521ab5d5a2'
+            # The Forge release certificate. Every published APK must carry it.
+            printf '%s\n' "$certificate" | grep -F 'Signer #1 certificate SHA-256 digest: f50a6c710f98ec187ebc50424bc1ec13f656f4ab741ebda9a943b7a21bbddfa7'
             "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging "$apk" | sed -n '1p' > "$RUNNER_TEMP/apk-version.txt"
             grep -F "versionName='${TAG#v}'" "$RUNNER_TEMP/apk-version.txt"
           done
