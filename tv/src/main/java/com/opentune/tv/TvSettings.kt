@@ -115,7 +115,7 @@ fun SettingsScreen(nav: TvNav) {
             }
         }
         item { Heading("About") }
-        item { SettingRow("OpenTune for TV", "Version ${com.opentune.core.BuildConfig.VERSION_NAME}", null) {} }
+        item { SettingRow("Forge for TV", "Version ${com.opentune.core.BuildConfig.VERSION_NAME}", null) {} }
     }
 }
 
@@ -194,7 +194,7 @@ private fun SettingRow(title: String, detail: String, value: String?, onClick: (
 }
 
 /**
- * Signing in without typing: a code on the screen that the phone's OpenTune scans, which then
+ * Signing in without typing: a code on the screen that the phone's Forge scans, which then
  * hands this TV its YouTube Music session directly over the home Wi-Fi, encrypted.
  */
 @Composable

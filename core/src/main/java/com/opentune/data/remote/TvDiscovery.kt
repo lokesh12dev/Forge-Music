@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-/** A TV running OpenTune on the same network, as it announced itself. [tvId] ties it to a pairing. */
+/** A TV running Forge on the same network, as it announced itself. [tvId] ties it to a pairing. */
 data class FoundTv(val tvId: String?, val name: String, val host: String, val port: Int)
 
 /** The phone's end of mDNS: the TVs that answer. Started when the remote's picker opens, stopped when it closes. */

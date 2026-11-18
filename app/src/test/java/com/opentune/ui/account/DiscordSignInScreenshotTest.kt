@@ -18,7 +18,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
-/** Discord's sign-in opens on Discord's page, OpenTune's form a tap away, with Discord's logo; drawn to build/screenshots. */
+/** Discord's sign-in opens on Discord's page, Forge's form a tap away, with Discord's logo; drawn to build/screenshots. */
 @RunWith(RobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], qualifiers = "w411dp-h891dp-xxhdpi", application = android.app.Application::class)
@@ -38,7 +38,7 @@ class DiscordSignInScreenshotTest {
         org.junit.Assert.assertEquals(page.height - 56f * compose.activity.resources.displayMetrics.density, browser.height, 1f)
         compose.onNodeWithContentDescription("Sign-in help").performClick()
         compose.mainClock.advanceTimeBy(1000)
-        compose.onNodeWithText("Use OpenTune's form").assertIsDisplayed().performClick()
+        compose.onNodeWithText("Use Forge's form").assertIsDisplayed().performClick()
         compose.mainClock.advanceTimeBy(1000)
         compose.waitForIdle()
         compose.onNodeWithText("Email or phone number").assertIsDisplayed()

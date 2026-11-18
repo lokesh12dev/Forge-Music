@@ -71,7 +71,7 @@ object ShareCard {
                     draw(cover, song.title, song.artist, positionMs, duration, avatar = photo, subtitle = song.albumName, liked = liked)
                 }
             }.onFailure { Log.w(TAG, "couldn't make the share card", it) }.getOrNull()
-            sendImage(context, bitmap, "OpenTune-${song.videoId}.png", "${song.title} · ${song.artist}\n$link", song.title)
+            sendImage(context, bitmap, "Forge-${song.videoId}.png", "${song.title} · ${song.artist}\n$link", song.title)
         }
     }
     /**
@@ -121,7 +121,7 @@ object ShareCard {
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            values.put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/OpenTune")
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/Forge")
             values.put(MediaStore.Images.Media.IS_PENDING, 1)
             val collection = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             val uri = resolver.insert(collection, values) ?: error("Couldn't add the picture")
@@ -135,7 +135,7 @@ object ShareCard {
             uri
         } else {
             @Suppress("DEPRECATION")
-            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "OpenTune").apply { mkdirs() }
+            val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Forge").apply { mkdirs() }
             val file = File(dir, fileName)
             file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
             @Suppress("DEPRECATION")
@@ -237,7 +237,7 @@ object ShareCard {
         val pad = u * 0.012f
         val namePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { color = white; textSize = u * 0.037f; typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD) }
         val subPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { color = soft; textSize = u * 0.033f }
-        val sub = subtitle?.takeIf { it.isNotBlank() } ?: "OpenTune"
+        val sub = subtitle?.takeIf { it.isNotBlank() } ?: "Forge"
         val textMax = u * 0.36f
         val name = TextUtils.ellipsize(artist, namePaint, textMax, TextUtils.TruncateAt.END).toString()
         val subLine = TextUtils.ellipsize(sub, subPaint, textMax, TextUtils.TruncateAt.END).toString()
@@ -321,7 +321,7 @@ object ShareCard {
     internal fun brandWidth(height: Float): Float = height * MARK_ASPECT + height * 0.35f + brandPaint(height, Color.WHITE).measureText(BRAND)
 
     /**
-     * The OpenTune mark and name, [height] tall, ending at [right] and centred
+     * The Forge mark and name, [height] tall, ending at [right] and centred
      * on [centerY], in [colour]. On every card, so a shared picture says where it's from.
      */
     internal fun drawBrand(c: Canvas, right: Float, centerY: Float, height: Float, colour: Int) {
@@ -339,7 +339,7 @@ object ShareCard {
         c.restore()
     }
 
-    private const val BRAND = "OpenTune"
+    private const val BRAND = "Forge"
     // Where the mark sits in the icon's 108-unit square.
     private const val MARK_LEFT = 27.8f
     private const val MARK_RIGHT = 80.3f

@@ -1,6 +1,6 @@
 {
-  "name": "OpenTune",
-  "short_name": "OpenTune",
+  "name": "Forge",
+  "short_name": "Forge",
   "description": "A free, open-source music player for Android.",
   "start_url": "./",
   "scope": "./",

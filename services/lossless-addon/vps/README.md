@@ -1,4 +1,4 @@
-# OpenTune lossless add-on on a VPS
+# Forge lossless add-on on a VPS
 
 The same add-on as the Cloudflare Worker, run by Node.js on an Ubuntu
 server with Caddy in front for HTTPS. Sign-ins are kept in a SQLite file
@@ -117,4 +117,4 @@ curl -o /dev/null -w '%{http_code}\n' https://YOUR_DOMAIN/monochrome/search?q=te
 sudo journalctl -u opentune-addon -n 50 --no-pager
 ```
 
-Then sign into `/control/` and `/usage/`, refresh each page, and test a song in the signed OpenTune app. Store backups off this VPS; a second thread does not protect against disk or server failure. Hostinger shared web hosting cannot run this systemd/Node service; use the KVM VPS.
+Then sign into `/control/` and `/usage/`, refresh each page, and test a song in the signed Forge app. Store backups off this VPS; a second thread does not protect against disk or server failure. Hostinger shared web hosting cannot run this systemd/Node service; use the KVM VPS.

@@ -68,7 +68,7 @@ object NerdStats {
         _loudnessGainDb.value = db
     }
 
-    /** Which engine found the playing track's stream: OpenTune's walk or InnerTubeX. */
+    /** Which engine found the playing track's stream: Forge's walk or InnerTubeX. */
     private val _engine = MutableStateFlow<String?>(null)
     val engine = _engine.asStateFlow()
 

@@ -59,7 +59,7 @@ function pretty(text, contentType) {
 
 /**
  * Fetch, save the body, and record what a browser at SITE_ORIGIN would get.
- * `init.headers` are the headers OpenTune's Kotlin client sends.
+ * `init.headers` are the headers Forge's Kotlin client sends.
  */
 async function capture(rel, url, init = {}) {
   const started = Date.now();

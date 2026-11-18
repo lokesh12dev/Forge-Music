@@ -50,7 +50,7 @@ import kotlin.math.sin
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 /**
- * Pull to refresh with the OpenTune mark. Pulling brings the mark in and
+ * Pull to refresh with the Forge mark. Pulling brings the mark in and
  * fills it with the accent from left to right, the page coming down after
  * the finger with some give; passing the line gives a tick and a pop. While
  * it loads, the mark sways like a sound wave with light running across it;

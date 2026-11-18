@@ -16,7 +16,7 @@ import android.text.TextUtils
  * A picture of a playlist or album to send with its link: its covers blurred
  * into the background, and in the middle a framed collage of up to four of
  * them (or the one cover), with the name and a line under it, and the
- * OpenTune mark and name at the foot, as on the other cards.
+ * Forge mark and name at the foot, as on the other cards.
  */
 object PlaylistCard {
     const val SIZE = ShareCard.SIZE

@@ -136,7 +136,7 @@ fun TvRoot(player: TvPlayer, voice: MutableStateFlow<String?> = MutableStateFlow
         }
     }
 
-    // "Play … on OpenTune" from the voice search opens Search with it typed in.
+    // "Play … on Forge" from the voice search opens Search with it typed in.
     val spoken by voice.collectAsState()
     LaunchedEffect(spoken) {
         spoken?.let { nav.goTab(Dest.Search); nav.pendingSearch = it; voice.value = null }

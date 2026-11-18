@@ -15,7 +15,7 @@ async function firstTrack(handler, source = 'monochrome') {
   const response = await handler(req(`/${source}/search?q=Wo%20Noor`));
   assert.equal(response.status, 200); return (await response.json()).tracks[0];
 }
-test('all source manifests work with OpenTune; health does not claim upstream availability', async () => {
+test('all source manifests work with Forge; health does not claim upstream availability', async () => {
   const h = createAddon({ fetcher: () => { throw Error('No request expected'); } });
   for (const source of ['monochrome', 'archive', 'musopen', 'netease']) {
     const m = await (await h(req(`/${source}/manifest.json`))).json();

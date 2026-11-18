@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 /** Sharing an album or playlist: a link for YouTube Music's own, the songs themselves for one made in the app. */
 object ListShare {
     /**
-     * Where [browseId] opens on YouTube Music, and in OpenTune for anyone who
+     * Where [browseId] opens on YouTube Music, and in Forge for anyone who
      * has it: playlists as playlist?list=, albums and the rest as browse/.
      */
     fun linkFor(browseId: String): String = when {
@@ -45,7 +45,7 @@ object ListShare {
             append("\nhttps://music.youtube.com/watch?v=").append(s.videoId)
         }
         if (songs.size > MAX_SONGS) append("\n\n…and ").append(songs.size - MAX_SONGS).append(" more")
-        append("\n\nShared from OpenTune")
+        append("\n\nShared from Forge")
     }
 
     fun shareLocal(context: Context, name: String, songs: List<Song>) =

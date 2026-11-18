@@ -75,7 +75,7 @@ import com.opentune.ui.components.SheetButton
 import com.opentune.ui.components.SheetTone
 import com.opentune.ui.components.rememberHaptics
 
-/** The other screens OpenTune can reach from this one. */
+/** The other screens Forge can reach from this one. */
 internal enum class LinkTarget(val label: String, val icon: ImageVector) {
     TV("TV", Icons.Rounded.Tv),
     COMPUTER("Computer", Icons.Rounded.Laptop),
@@ -103,7 +103,7 @@ fun LinkDeviceScreen(
     var casting by remember { mutableStateOf(false) }
     var scanning by remember { mutableStateOf(false) }
     // The TV's code read here goes the same way as one scanned with the phone's camera app:
-    // a sign-in code asks to approve, any other OpenTune link opens.
+    // a sign-in code asks to approve, any other Forge link opens.
     if (scanning) com.opentune.ui.account.QrScannerDialog(onDismiss = { scanning = false }) { text ->
         scanning = false
         val view = Intent(Intent.ACTION_VIEW, text.toUri())
@@ -354,5 +354,5 @@ private fun Note(icon: ImageVector, text: String) {
 }
 
 private val WEB_PLAYER get() = com.opentune.data.config.RemoteConfig.current.web
-private const val RELEASES = "https://github.com/justshivv/Opentune/releases/latest"
-private const val SOURCE = "https://github.com/justshivv/Opentune/tree/main/wear"
+private const val RELEASES = "https://github.com/lokesh12dev/newforgemusic/releases/latest"
+private const val SOURCE = "https://github.com/lokesh12dev/newforgemusic/tree/main/wear"

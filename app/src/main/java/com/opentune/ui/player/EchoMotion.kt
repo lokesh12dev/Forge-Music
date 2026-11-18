@@ -52,7 +52,7 @@ internal fun rememberEchoPhase(running: Boolean, periodMillis: Int): State<Float
 
 /**
  * Adapted from Echo Music's GLOW_ANIMATED in MiniPlayer.kt (GPL-3.0).
- * Source and revision: THIRD_PARTY_NOTICES.md. Uses OpenTune's palette and
+ * Source and revision: THIRD_PARTY_NOTICES.md. Uses Forge's palette and
  * light/dark surface to retain readable controls, without image blur passes.
  */
 @Composable

@@ -30,7 +30,7 @@ import org.json.JSONObject
  *
  * Sign-in is Last.fm's desktop flow: a token approved on last.fm in the
  * browser, then traded for a session key. No password passes through
- * OpenTune. Kept in ~/.opentune/lastfm.json.
+ * Forge. Kept in ~/.opentune/lastfm.json.
  */
 object LastFmDesktop {
     private const val API = "https://ws.audioscrobbler.com/2.0/"
@@ -94,7 +94,7 @@ object LastFmDesktop {
 
     /**
      * Opens Last.fm's approval page in the browser and waits for the listener to
-     * allow OpenTune there; [done] gets null on success, else what went wrong.
+     * allow Forge there; [done] gets null on success, else what went wrong.
      */
     fun signIn(done: (String?) -> Unit) {
         val keys = loginKeys() ?: return done("Add a Last.fm API key and secret first.")

@@ -10,7 +10,7 @@ People who listen to a lot of music on Android and want the YouTube Music catalo
 
 ## Product Purpose
 
-The website explains what OpenTune is, shows it working, and gets the right build onto the visitor's device with as little doubt as possible. Success is a visitor who understands the app in a few seconds, trusts the download (open source, release notes, clear install steps), and installs it. The web player at /player/ lets people listen in the browser straight away.
+The website explains what Forge is, shows it working, and gets the right build onto the visitor's device with as little doubt as possible. Success is a visitor who understands the app in a few seconds, trusts the download (open source, release notes, clear install steps), and installs it. The web player at /player/ lets people listen in the browser straight away.
 
 ## Brand Personality
 

@@ -18,7 +18,7 @@ import org.junit.Assume.assumeTrue
 import org.junit.Test
 
 /**
- * The title bar OpenTune draws on Windows, on a real window: it keeps Windows' resize edges, gives
+ * The title bar Forge draws on Windows, on a real window: it keeps Windows' resize edges, gives
  * the app all of the window, still draws, and maximises onto the screen's work area. Runs only on
  * Windows with a display (CI's Windows machine); skipped everywhere else.
  */

@@ -42,8 +42,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * The cursor a phone's trackpad moves on the TV's screen. It is drawn by OpenTune over its own
- * pages (see [TvCursor]), and what it clicks is OpenTune's own: this is not a pointer for the
+ * The cursor a phone's trackpad moves on the TV's screen. It is drawn by Forge over its own
+ * pages (see [TvCursor]), and what it clicks is Forge's own: this is not a pointer for the
  * whole TV, only for this app.
  */
 class TvPointer {
@@ -103,7 +103,7 @@ private const val CURSOR_FADE_START_MS = 4_000L
 
 /**
  * What a paired phone's messages do on the TV. It turns the phone's trackpad into mouse events
- * sent into OpenTune's own window (hover, click, drag and scroll), its buttons into the keys a
+ * sent into Forge's own window (hover, click, drag and scroll), its buttons into the keys a
  * remote sends, and its media buttons into the player. Everything runs on the main thread.
  */
 class TvRemoteInput(
@@ -272,7 +272,7 @@ class TvRemote(private val context: Context, val phones: PairedPhones) {
 
     /** What this TV is called to a phone: what the owner named it in the TV's settings, else its model. */
     val name: String = (Settings.Global.getString(context.contentResolver, "device_name")?.takeIf { it.isNotBlank() } ?: android.os.Build.MODEL)
-        .let { "OpenTune on $it" }.take(60)
+        .let { "Forge on $it" }.take(60)
 
     fun start() {
         if (host != null) return

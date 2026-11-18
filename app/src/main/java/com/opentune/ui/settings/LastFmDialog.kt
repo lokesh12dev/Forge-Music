@@ -23,7 +23,7 @@ import com.opentune.ui.components.SheetButton
 import kotlinx.coroutines.launch
 
 /**
- * Connects Last.fm with OpenTune's registered application. The password is
+ * Connects Last.fm with Forge's registered application. The password is
  * sent once to Last.fm to get a session key and isn't kept.
  */
 @Composable

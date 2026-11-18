@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.vector.PathParser
 
 /**
- * The OpenTune mark as path data in the launcher icon's 108 by 108 space,
+ * The Forge mark as path data in the launcher icon's 108 by 108 space,
  * the same shape as res/drawable/ic_launcher_foreground.xml, for drawing it
  * at any size (the opening animation zooms into it).
  */

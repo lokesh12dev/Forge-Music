@@ -222,19 +222,19 @@ jobs:
         run: |
           ./gradlew --no-daemon :desktop:createDistributable
           app=desktop/build/compose/binaries/main/app
-          if [ -d "$app/OpenTune.app" ]; then "$app/OpenTune.app/Contents/MacOS/OpenTune" --self-check; else "$app/OpenTune/bin/OpenTune" --self-check; fi
+          if [ -d "$app/Forge.app" ]; then "$app/Forge.app/Contents/MacOS/Forge" --self-check; else "$app/Forge/bin/Forge" --self-check; fi
       # One file that runs on any Linux after chmod +x, wrapped around the app image just checked.
       - name: AppImage
         if: runner.os == 'Linux'
-        run: desktop/packaging/appimage.sh desktop/build/compose/binaries/main/app/OpenTune desktop/build/compose/binaries/main/appimage/OpenTune-x86_64.AppImage
-      # Unzip anywhere and run OpenTune.exe: the app image, zipped.
+        run: desktop/packaging/appimage.sh desktop/build/compose/binaries/main/app/Forge desktop/build/compose/binaries/main/appimage/Forge-x86_64.AppImage
+      # Unzip anywhere and run Forge.exe: the app image, zipped.
       - name: Portable zip
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           ./gradlew --no-daemon :desktop:createDistributable
           New-Item -ItemType Directory -Force desktop/build/compose/binaries/main/portable | Out-Null
-          Compress-Archive -Path desktop/build/compose/binaries/main/app/OpenTune -DestinationPath desktop/build/compose/binaries/main/portable/OpenTune-windows-x64-portable.zip
+          Compress-Archive -Path desktop/build/compose/binaries/main/app/Forge -DestinationPath desktop/build/compose/binaries/main/portable/Forge-windows-x64-portable.zip
       - uses: actions/upload-artifact@v4
         with:
           name: desktop-${{ matrix.os }}

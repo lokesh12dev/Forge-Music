@@ -28,7 +28,7 @@ import okhttp3.Request
 object Updater {
     private const val TAG = "Updater"
 
-    /** Whether Android lets OpenTune install apps; if not, [allowInstallsIntent] opens the switch. */
+    /** Whether Android lets Forge install apps; if not, [allowInstallsIntent] opens the switch. */
     fun canInstall(context: Context) = context.packageManager.canRequestPackageInstalls()
 
     fun allowInstallsIntent(context: Context) =
@@ -37,7 +37,7 @@ object Updater {
     private fun dir(context: Context) = File(context.cacheDir, "updates")
     private val VERSION_IN_NAME = Regex("""^(?:OpenTune|Forge)-v([0-9][0-9.]*)-[A-Za-z0-9_\-]+\.apk$""")
 
-    /** The version an update APK's file name carries, like 0.5.0 in OpenTune-v0.5.0-arm64-v8a.apk. */
+    /** The version an update APK's file name carries, like 0.5.0 in Forge-v0.5.0-arm64-v8a.apk. */
     internal fun versionOf(fileName: String): String? = VERSION_IN_NAME.find(fileName)?.groupValues?.get(1)
 
     /** Update APKs kept from earlier downloads, in bytes. */
@@ -187,7 +187,7 @@ object Updater {
                     Log.w(TAG, "Install failed: $status $message")
                     val text = when (status) {
                         PackageInstaller.STATUS_FAILURE_CONFLICT, PackageInstaller.STATUS_FAILURE_INCOMPATIBLE ->
-                            "This update is signed differently from the installed app. Uninstall OpenTune, then install the update."
+                            "This update is signed differently from the installed app. Uninstall Forge, then install the update."
                         PackageInstaller.STATUS_FAILURE_ABORTED -> "Update cancelled"
                         PackageInstaller.STATUS_FAILURE_STORAGE -> "Not enough space for the update"
                         else -> "Update failed${message?.let { ": $it" } ?: ""}"

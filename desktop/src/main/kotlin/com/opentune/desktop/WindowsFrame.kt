@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.json.JSONObject
 
 /**
- * On Windows, OpenTune draws the title bar itself: the close, minimise and zoom buttons at the
+ * On Windows, Forge draws the title bar itself: the close, minimise and zoom buttons at the
  * head of the sidebar, and the empty parts of the sidebar's head and the player bar to drag the
  * window by. Underneath it's still an ordinary resizable Windows window, so Windows keeps its
  * shadow, rounded corners, Snap, the resize edges and the maximise animation; only the caption
@@ -108,7 +108,7 @@ internal object WindowsFrame {
             u.SetWindowPos(h, null, 0, 0, 0, 0, SWP_FRAMECHANGED or SWP_NOMOVE or SWP_NOSIZE or SWP_NOZORDER or SWP_NOACTIVATE)
             applyMaterial(lastDark)
             true
-        }.onFailure { System.err.println("OpenTune: own window frame not installed: $it") }.getOrDefault(false)
+        }.onFailure { System.err.println("Forge: own window frame not installed: $it") }.getOrDefault(false)
     }
 
     // The theme's darkness last asked for, for the material put on when the frame goes in.
@@ -278,7 +278,7 @@ internal object WindowsFrame {
     internal val api: Api? by lazy {
         if (!isWindows) null else runCatching {
             Api(Native.load("user32", User32::class.java), runCatching { Native.load("dwmapi", Dwm::class.java) }.getOrNull())
-        }.onFailure { System.err.println("OpenTune: JNA unavailable, keeping Windows' own title bar: $it") }.getOrNull()
+        }.onFailure { System.err.println("Forge: JNA unavailable, keeping Windows' own title bar: $it") }.getOrNull()
     }
 
     internal const val GWLP_WNDPROC = -4

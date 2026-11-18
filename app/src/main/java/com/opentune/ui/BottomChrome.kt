@@ -195,7 +195,7 @@ fun rememberChromeScroll(threshold: Dp = 48.dp): ChromeScrollConnection {
 class ChromeTab(val label: String, val icon: ImageVector, val selectedIcon: ImageVector = icon)
 
 /**
- * OpenTune's bottom chrome: the now-playing card over one dock that holds
+ * Forge's bottom chrome: the now-playing card over one dock that holds
  * every destination, Search included. The current destination is a filled
  * capsule in the accent colour with its name; the others are icons.
  *

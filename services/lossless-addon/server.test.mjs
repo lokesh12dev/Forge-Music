@@ -17,7 +17,7 @@ async function start(extra = {}) {
     stdio: ['ignore', 'pipe', 'inherit'],
   });
   await new Promise((resolve, reject) => {
-    child.stdout.on('data', d => { if (String(d).includes('OpenTune add-on on')) resolve(); });
+    child.stdout.on('data', d => { if (String(d).includes('Forge add-on on')) resolve(); });
     child.on('exit', code => reject(new Error('server exited ' + code)));
   });
   return { base: `http://127.0.0.1:${port}`, dir, stop: () => { child.kill(); rmSync(dir, { recursive: true, force: true }); } };
@@ -82,7 +82,7 @@ test('without the dashboards it runs the add-on alone: manifests answer, /contro
   });
   try {
     await new Promise((resolve, reject) => {
-      child.stdout.on('data', d => { if (String(d).includes('OpenTune add-on on')) resolve(); });
+      child.stdout.on('data', d => { if (String(d).includes('Forge add-on on')) resolve(); });
       child.on('exit', code => reject(new Error('server exited ' + code)));
     });
     const base = `http://127.0.0.1:${port}`;

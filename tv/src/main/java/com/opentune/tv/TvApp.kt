@@ -17,7 +17,7 @@ import okio.Path.Companion.toOkioPath
 class TvApp : Application(), SingletonImageLoader.Factory {
     /**
      * Covers are drawn large on a TV, so they get a fair share of memory and
-     * disk, on the shared HTTP client the rest of OpenTune uses.
+     * disk, on the shared HTTP client the rest of Forge uses.
      */
     override fun newImageLoader(context: PlatformContext): ImageLoader =
         ImageLoader.Builder(context)

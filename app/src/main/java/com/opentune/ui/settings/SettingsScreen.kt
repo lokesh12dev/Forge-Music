@@ -384,7 +384,7 @@ fun SettingsScreen(
                 }
                 item {
                     Text(
-                        com.opentune.i18n.Tr.f("OpenTune {0} • GNU GPL v3 • Lyrics from LRCLIB", BuildConfig.VERSION_NAME),
+                        com.opentune.i18n.Tr.f("Forge {0} • GNU GPL v3 • Lyrics from LRCLIB", BuildConfig.VERSION_NAME),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(28.dp),
@@ -539,7 +539,7 @@ private fun settingsSections(
             message = runCatching {
                 withContext(Dispatchers.IO) {
                     val doc = buildJsonObject {
-                        put("app", "OpenTune")
+                        put("app", "Forge")
                         put("version", 1)
                         put("settings", AppSettings.exportJson())
                         put("history", History.exportJson())
@@ -557,7 +557,7 @@ private fun settingsSections(
             message = runCatching {
                 val doc = withContext(Dispatchers.IO) {
                     context.contentResolver.openInputStream(uri)?.use { AppSettings.json.parseToJsonElement(it.readBytes().decodeToString()) }
-                } as? JsonObject ?: error("not an OpenTune export")
+                } as? JsonObject ?: error("not an Forge export")
                 doc["settings"]?.let(AppSettings::importJson)
                 doc["history"]?.let(History::importJson)
                 doc["library"]?.let(LibraryStore::importJson)
@@ -958,7 +958,7 @@ private fun settingsSections(
                     NavRow(
                         "Background playback",
                         { runCatching { context.startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)) } },
-                        summary = if (ignoring) "Unrestricted: music keeps playing with the screen off" else "Restricted: if playback stops in the background, set OpenTune to Unrestricted",
+                        summary = if (ignoring) "Unrestricted: music keeps playing with the screen off" else "Restricted: if playback stops in the background, set Forge to Unrestricted",
                         icon = Icons.Rounded.BatteryChargingFull,
                     )
                 },
@@ -1094,7 +1094,7 @@ private fun settingsSections(
                     )
                 },
                 Entry("Resume when headphones connect", "bluetooth headset wired auto play resume connect car") {
-                    ToggleRow("Resume when headphones connect", pb.resumeOnConnect, { v -> AppSettings.updatePlayback { it.copy(resumeOnConnect = v) } }, summary = "Carries on playing when headphones are plugged in or a Bluetooth device connects, while OpenTune is open or in the notification", icon = com.opentune.ui.player.PlayerIcons.Headphones)
+                    ToggleRow("Resume when headphones connect", pb.resumeOnConnect, { v -> AppSettings.updatePlayback { it.copy(resumeOnConnect = v) } }, summary = "Carries on playing when headphones are plugged in or a Bluetooth device connects, while Forge is open or in the notification", icon = com.opentune.ui.player.PlayerIcons.Headphones)
                 },
                 Entry("Pause at zero volume", "mute volume down silent") {
                     ToggleRow("Pause at zero volume", pb.pauseAtZeroVolume, { v -> AppSettings.updatePlayback { it.copy(pauseAtZeroVolume = v) } }, summary = "Pauses when the volume is turned all the way down and plays again when it comes back up", icon = Icons.AutoMirrored.Rounded.VolumeOff)
@@ -1174,7 +1174,7 @@ private fun settingsSections(
                         value = com.opentune.ui.theme.AppLanguages.selected(context).label)
                 },
                 Entry("App icon", "launcher icon design glass pearl midnight rose ocean") {
-                    NavRow("App icon", { appIconDialog = true }, summary = "Choose the OpenTune icon on your home screen", icon = Icons.Rounded.Palette)
+                    NavRow("App icon", { appIconDialog = true }, summary = "Choose the Forge icon on your home screen", icon = Icons.Rounded.Palette)
                 },
                 Entry("Fonts & readability", "font typeface text weight bold thin ttf otf import custom") {
                     NavRow("Fonts & readability", { fontDialog = true }, summary = "Built-in fonts, text weight and your own font file", icon = Icons.Rounded.TextFields, value = theme.font.label)
@@ -1216,7 +1216,7 @@ private fun settingsSections(
                         "Opening animation",
                         ui.openingAnimation,
                         { v -> AppSettings.updateUi { it.copy(openingAnimation = v) } },
-                        summary = "When OpenTune starts, the screen dives into the logo and the app comes through it",
+                        summary = "When Forge starts, the screen dives into the logo and the app comes through it",
                         icon = Icons.Rounded.AutoAwesome,
                     )
                 },
@@ -1864,7 +1864,7 @@ private fun settingsSections(
                 Entry("M. Lokesh", "github developer creator lokesh dedicated hardworker") {
                     SettingRow(
                         "M. Lokesh",
-                        summary = "Creator of Forge · Dedicated & Hardworker · All work done by Lokesh",
+                        summary = "Creator of Forge · Developed full-time with dedication, discipline and hard work",
                         icon = null,
                         leading = { Artwork("https://avatars.githubusercontent.com/u/312451503?v=4", Modifier.size(28.dp), CircleShape) },
                         trailing = {

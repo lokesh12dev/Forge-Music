@@ -404,7 +404,7 @@ private fun WindowRows() {
     }
 }
 
-/** The signature service's address, checked against its health address before it's kept; blank is OpenTune's default. */
+/** The signature service's address, checked against its health address before it's kept; blank is Forge's default. */
 @Composable
 private fun SignatureServiceRow(current: String) {
     var address by remember(current) { mutableStateOf(current) }

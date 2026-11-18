@@ -41,7 +41,13 @@ function allowed(sender: Browser.runtime.MessageSender): boolean {
   if (origin === OWN_ORIGIN && sender.id === browser.runtime.id) return true;
   if (!origin || !ALLOWED_ORIGINS.has(origin) || !sender.url) return false;
   const url = new URL(sender.url);
-  return origin !== 'https://justshivv.github.io' || url.pathname.startsWith('/Opentune/player/');
+  const playerPath =
+    origin === 'https://lokesh12dev.github.io'
+      ? '/newforgemusic/player/'
+      : origin === 'https://justshivv.github.io'
+        ? '/Opentune/player/'
+        : null;
+  return playerPath === null || url.pathname.startsWith(playerPath);
 }
 
 function failure(id: string, error: unknown): BridgeResponse {
@@ -226,7 +232,7 @@ function onCookieChanged({ cookie }: Browser.cookies.CookieChangeInfo): void {
       spotify
         .authState()
         .then((data) => broadcast({ event: 'spotify.authState', data }))
-        .catch((error: unknown) => console.warn('OpenTune: reading the Spotify session failed', error));
+        .catch((error: unknown) => console.warn('Forge: reading the Spotify session failed', error));
     }, 1000);
     return;
   }
@@ -237,7 +243,7 @@ function onCookieChanged({ cookie }: Browser.cookies.CookieChangeInfo): void {
   cookieTimer = setTimeout(() => {
     authState(true)
       .then((data) => broadcast({ event: 'yt.authState', data }))
-      .catch((error: unknown) => console.warn('OpenTune: reading the YouTube session failed', error));
+      .catch((error: unknown) => console.warn('Forge: reading the YouTube session failed', error));
   }, 1000);
 }
 
@@ -245,7 +251,7 @@ export default defineBackground(() => {
   // Dynamic rules persist, but are rewritten on every install and startup so
   // an update that changes them never leaves stale ones behind.
   const refreshRules = () =>
-    installRules(__SITE_ORIGINS__).catch((error: unknown) => console.error('OpenTune: installing rules failed', error));
+    installRules(__SITE_ORIGINS__).catch((error: unknown) => console.error('Forge: installing rules failed', error));
   browser.runtime.onInstalled.addListener(refreshRules);
   browser.runtime.onStartup.addListener(refreshRules);
 

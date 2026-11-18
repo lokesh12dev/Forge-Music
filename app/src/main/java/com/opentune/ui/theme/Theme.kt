@@ -195,7 +195,7 @@ internal fun ColorScheme.animated(): ColorScheme {
 private val baseType = Typography()
 
 /**
- * Outfit, OpenTune's typeface: a geometric sans with round, open letters
+ * Outfit, Forge's typeface: a geometric sans with round, open letters
  * (SIL Open Font License; see third_party/outfit). One variable font file,
  * instanced at the weights the app uses.
  */

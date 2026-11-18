@@ -7,7 +7,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.loadSvgPainter
 import androidx.compose.ui.unit.Density
 
-/** OpenTune's mark, as on the phone's launcher icon: the wave alone, white, or the full app icon. */
+/** Forge's mark, as on the phone's launcher icon: the wave alone, white, or the full app icon. */
 object Logo {
     const val MARK = "logo/mark.svg"
     const val APP = "logo/app.svg"

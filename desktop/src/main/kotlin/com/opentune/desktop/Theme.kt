@@ -247,7 +247,7 @@ private val outfitData: ByteArray by lazy {
     Thread.currentThread().contextClassLoader.getResourceAsStream("font/outfit_variable.ttf")!!.use { it.readBytes() }
 }
 
-/** Outfit, OpenTune's typeface (SIL Open Font License; see third_party/outfit), one variable file. */
+/** Outfit, Forge's typeface (SIL Open Font License; see third_party/outfit), one variable file. */
 private val Outfit: FontFamily by lazy {
     FontFamily(
         listOf(400, 500, 600, 700, 800).map { w ->

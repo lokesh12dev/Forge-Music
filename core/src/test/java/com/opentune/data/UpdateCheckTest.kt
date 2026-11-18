@@ -18,11 +18,11 @@ class UpdateCheckTest {
 
     private val release = Json.parseToJsonElement(
         """
-        {"tag_name":"v0.3.0","html_url":"https://github.com/justshivv/Opentune/releases/tag/v0.3.0","body":"Notes",
+        {"tag_name":"v0.3.0","html_url":"https://github.com/lokesh12dev/newforgemusic/releases/tag/v0.3.0","body":"Notes",
          "assets":[
-          {"name":"OpenTune-v0.3.0-armeabi-v7a.apk","browser_download_url":"https://x/v7a.apk","size":9000000},
-          {"name":"OpenTune-v0.3.0-arm64-v8a.apk","browser_download_url":"https://x/arm64.apk","size":9300000},
-          {"name":"OpenTune-v0.3.0-universal.apk","browser_download_url":"https://x/universal.apk","size":11800000},
+          {"name":"Forge-v0.3.0-armeabi-v7a.apk","browser_download_url":"https://x/v7a.apk","size":9000000},
+          {"name":"Forge-v0.3.0-arm64-v8a.apk","browser_download_url":"https://x/arm64.apk","size":9300000},
+          {"name":"Forge-v0.3.0-universal.apk","browser_download_url":"https://x/universal.apk","size":11800000},
           {"name":"SHA256SUMS.txt","browser_download_url":"https://x/sums","size":300}
          ]}
         """,
@@ -31,17 +31,19 @@ class UpdateCheckTest {
     @Test fun picksTheApkForThePhonesProcessor() {
         val r = UpdateCheck.parse(release, listOf("arm64-v8a", "armeabi-v7a", "armeabi"))!!
         assertEquals("0.3.0", r.version)
-        assertEquals("OpenTune-v0.3.0-arm64-v8a.apk", r.apk?.name)
+        assertEquals("Forge-v0.3.0-arm64-v8a.apk", r.apk?.name)
         assertEquals(9_300_000L, r.apk?.bytes)
         assertEquals("SHA256SUMS.txt", r.sums?.name)
         assertEquals("Notes", r.notes)
     }
 
     @Test fun fallsBackToUniversal() {
-        assertEquals("OpenTune-v0.3.0-universal.apk", UpdateCheck.parse(release, listOf("riscv64"))?.apk?.name)
+        assertEquals("Forge-v0.3.0-universal.apk", UpdateCheck.parse(release, listOf("riscv64"))?.apk?.name)
     }
 
     @Test fun readsTheVersionFromAnApkName() {
+        assertEquals("0.5.0", Updater.versionOf("Forge-v0.5.0-arm64-v8a.apk"))
+        assertEquals("0.5.0", Updater.versionOf("OpenTune-v0.5.0-arm64-v8a.apk"))
         assertEquals("0.5.0", Updater.versionOf("Forge-v0.5.0-arm64-v8a.apk"))
         assertEquals("0.5.0", Updater.versionOf("OpenTune-v0.5.0-arm64-v8a.apk"))
         assertEquals("0.4.10", Updater.versionOf("Forge-v0.4.10-universal.apk"))

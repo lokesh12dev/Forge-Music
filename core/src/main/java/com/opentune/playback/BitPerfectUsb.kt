@@ -246,7 +246,7 @@ object BitPerfectUsb {
     }
 
     /**
-     * What OpenTune's own outputs (the USB driver, the exclusive built-in DAC)
+     * What Forge's own outputs (the USB driver, the exclusive built-in DAC)
      * report as they open a song, so the rest of the app treats it as bit-perfect:
      * effects off, no crossfade, the volume applied by the app. Null when none is
      * in use.

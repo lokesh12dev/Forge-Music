@@ -3,7 +3,7 @@ import { withAbuseProtection } from './security.mjs';
 import { withAppVerification } from './auth.mjs';
 export { AddonAuthState } from './auth.mjs';
 
-/** OpenTune lossless HTTP adapters. No media transcoding or audio proxying. */
+/** Forge lossless HTTP adapters. No media transcoding or audio proxying. */
 const MONO = 'https://tracks.monochrome.st';
 const ARCHIVE = 'https://archive.org';
 const NETEASE = 'https://music.163.com';
@@ -23,13 +23,13 @@ class SourceError extends Error {
   constructor(message, status = 502, retryAfter = null) { super(message); this.status = status; this.retryAfter = retryAfter; }
 }
 const sources = {
-  netease: { id: 'org.opentune.netease', name: 'OpenTune · NetEase',
+  netease: { id: 'org.opentune.netease', name: 'Forge · NetEase',
     description: 'NetEase catalogue with public Meting audio resolution. Native FLAC is checked before playback; availability and original resolution vary by recording.' },
-  monochrome: { id: 'org.opentune.monochrome', name: 'OpenTune · Monochrome',
+  monochrome: { id: 'org.opentune.monochrome', name: 'Forge · Monochrome',
     description: 'Independent adapter for Monochrome’s public Track Streamer. Availability and quotas depend on that service.' },
-  archive: { id: 'org.opentune.archive', name: 'OpenTune · Internet Archive',
+  archive: { id: 'org.opentune.archive', name: 'Forge · Internet Archive',
     description: 'FLAC recordings from Internet Archive. Catalogue includes live recordings and independent releases; it is not a substitute for a studio catalogue.' },
-  musopen: { id: 'org.opentune.musopen', name: 'OpenTune · Musopen Classical',
+  musopen: { id: 'org.opentune.musopen', name: 'Forge · Musopen Classical',
     description: 'Musopen Kickstarter collection on Internet Archive. Original classical FLAC recordings; collection credits are preserved when performer metadata is absent. Not a popular-music catalogue or a guaranteed hi-res tier.' },
 };
 function manifest(source) {

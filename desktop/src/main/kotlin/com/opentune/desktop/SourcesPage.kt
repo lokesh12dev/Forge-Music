@@ -60,8 +60,8 @@ import kotlinx.coroutines.launch
 
 /**
  * Audio sources, as the phone's Add-ons page and the web player's Audio
- * sources: JioSaavn, the add-ons OpenTune publishes and your own, and
- * verifying this computer for OpenTune's own source.
+ * sources: JioSaavn, the add-ons Forge publishes and your own, and
+ * verifying this computer for Forge's own source.
  */
 @Composable
 internal fun SourcesSection() {
@@ -163,7 +163,7 @@ private fun AddSource() {
     }
 }
 
-/** Approving this computer from the phone, for OpenTune's own add-on: a QR code the phone's camera opens in the app. */
+/** Approving this computer from the phone, for Forge's own add-on: a QR code the phone's camera opens in the app. */
 @Composable
 private fun VerifyComputer() {
     val until by AddonPairing.until.collectAsState()

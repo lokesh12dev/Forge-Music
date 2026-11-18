@@ -1,4 +1,4 @@
-# OpenTune lossless add-on, add-on only
+# Forge lossless add-on, add-on only
 
 The add-on and nothing else: no owner dashboard (`/control/`), no usage dashboard,
 and no app-configuration endpoint (`/v1/app-config`). It is Node.js behind Caddy for

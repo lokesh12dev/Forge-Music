@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OpenTune"
+rootProject.name = "Forge"
 include(":app")
 include(":core")
 include(":wear")

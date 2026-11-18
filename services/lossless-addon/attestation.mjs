@@ -2,7 +2,7 @@ import { X509Certificate, createHash, verify } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 
 export class AttestationFailure extends Error {
-  constructor(code) { super('Official hardware-backed OpenTune verification failed'); this.code = code; }
+  constructor(code) { super('Official hardware-backed Forge verification failed'); this.code = code; }
 }
 const fail = (code = 'ATTESTATION_INVALID') => { throw new AttestationFailure(code); };
 const hex = bytes => Buffer.from(bytes).toString('hex');

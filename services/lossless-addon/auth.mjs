@@ -9,11 +9,11 @@ const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods
 export const reply = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: CORS });
 const token = () => randomBytes(32).toString('base64url');
 /**
- * What OpenTune for computers sends as its Origin when it asks to pair. It isn't
+ * What Forge for computers sends as its Origin when it asks to pair. It isn't
  * a website, so it isn't in WEB_ORIGINS; it pairs the same way, with a phone's approval.
  */
 export const DESKTOP_ORIGIN = 'opentune-desktop://app';
-const denied = () => reply({ error: 'Verify this device with the current official OpenTune app. Unsupported devices cannot use this source.' }, 401);
+const denied = () => reply({ error: 'Verify this device with the current official Forge app. Unsupported devices cannot use this source.' }, 401);
 export const canonical = (session, time, nonce, method, path, body = '') => ['OpenTune-Addon-v1', session, time, nonce, method, path, sha256(body)].join('\n');
 function publicKey(pem) {
   const key = createPublicKey(pem);
@@ -158,7 +158,7 @@ export function withAppVerification(handler, { trust = googleTrust, attest = ver
       const result = await handler(request), headers = new Headers(result.headers);
       Object.entries(CORS).forEach(([k, v]) => headers.set(k, v));
       return new Response(result.body, { status: result.status, headers });
-    } catch (e) { return reply({ error: 'Verification failed. Retry in the official OpenTune app on a supported, locked device.',
+    } catch (e) { return reply({ error: 'Verification failed. Retry in the official Forge app on a supported, locked device.',
       ...(e instanceof AttestationFailure ? { code: e.code } : {}) }, 403); }
   };
 }

@@ -10,7 +10,7 @@ import { isMobileBrowser } from '@/lib/platform';
 import { LYRIC_EXTENSION_ORIGINS } from '@/lyrics/http';
 
 const mobile = isMobileBrowser();
-/** Safari has no OpenTune extension: the popup says which browsers do. */
+/** Safari has no Forge extension: the popup says which browsers do. */
 const safari = /^((?!chrome|chromium|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
 const DONE_KEY = 'opentune:allow-gate-done';
 
@@ -64,7 +64,7 @@ function useAddonAccess(present: boolean) {
 }
 
 /**
- * The web player's first-run popup: install the OpenTune extension, then let it
+ * The web player's first-run popup: install the Forge extension, then let it
  * reach the lyric providers and the audio add-ons' hosts. The player behind it
  * is locked until all three are done. Phones skip it: their browsers can't run
  * the extension, and the shell already points them at the app.
@@ -215,16 +215,16 @@ function GateDialog(props: GateProps) {
         <p className="mt-1.5 type-body text-secondary text-pretty">
           {allDone
             ? 'The extension is connected and can reach your lyric providers and audio add-ons.'
-            : 'The OpenTune extension does the work a web page isn’t allowed to: playback, sign-in, lyrics from most providers and lossless add-ons. Finish these steps to start listening.'}
+            : 'The Forge extension does the work a web page isn’t allowed to: playback, sign-in, lyrics from most providers and lossless add-ons. Finish these steps to start listening.'}
         </p>
 
         <ol className="mt-3 divide-y-[0.5px] divide-divider" aria-live="polite">
           <Step
             n={1}
-            title="Install the OpenTune extension"
+            title="Install the Forge extension"
             detail={
               safari
-                ? 'Safari can’t run it. Open OpenTune in Chrome, Edge, Brave or Firefox.'
+                ? 'Safari can’t run it. Open Forge in Chrome, Edge, Brave or Firefox.'
                 : 'This page notices it on its own once it’s loaded.'
             }
             state={extensionStep}

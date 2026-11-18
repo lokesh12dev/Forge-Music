@@ -46,7 +46,7 @@ class TvRemoteScreenTest {
     private fun show() {
         compose.setContent {
             MaterialTheme(darkColorScheme()) {
-                Surface { RemotePad("OpenTune on Bravia", now, { sent += it }, PaddingValues(), onLeave = {}) }
+                Surface { RemotePad("Forge on Bravia", now, { sent += it }, PaddingValues(), onLeave = {}) }
             }
         }
         compose.waitForIdle()
@@ -63,7 +63,7 @@ class TvRemoteScreenTest {
     @Test fun opensOnTheTrackpadAndShowsTheCursorOnTheTv() {
         show()
         compose.onNodeWithText("Echoes").assertExists()
-        compose.onNodeWithText("OpenTune on Bravia").assertExists()
+        compose.onNodeWithText("Forge on Bravia").assertExists()
         compose.onNodeWithContentDescription("Trackpad").assertExists()
         assertTrue(sent.contains(RemoteMessage.Cursor(true)))
         shot("trackpad")

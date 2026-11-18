@@ -13,9 +13,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 /**
- * Listens made outside OpenTune (YouTube Music, or any app on the same
- * account) come into OpenTune's history: Recents, Replay, the stats and the
- * mixes built from them. OpenTune already reports its own plays to the
+ * Listens made outside Forge (YouTube Music, or any app on the same
+ * account) come into Forge's history: Recents, Replay, the stats and the
+ * mixes built from them. Forge already reports its own plays to the
  * account; this reads the account's history back when the app comes to the
  * front, at most every few minutes, and adds what isn't here yet.
  */

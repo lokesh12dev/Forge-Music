@@ -40,7 +40,7 @@ import org.json.JSONObject
 
 /**
  * Where a song can play from besides YouTube, as on the phone and the web
- * player: HTTP audio add-ons, the ones OpenTune's owner publishes and any
+ * player: HTTP audio add-ons, the ones Forge's owner publishes and any
  * the listener adds, for FLAC, and JioSaavn for 320 kbps AAC. Kept in
  * ~/.opentune/sources.json beside the library.
  */
@@ -52,7 +52,7 @@ internal object Addons {
         /** The manifest's address. */
         val url: String,
         val enabled: Boolean = true,
-        /** Published by OpenTune's owner: it can be turned off here, not removed. */
+        /** Published by Forge's owner: it can be turned off here, not removed. */
         val admin: Boolean = false,
         /** Turned off by the owner for everyone. */
         val ownerOff: Boolean = false,
@@ -127,7 +127,7 @@ internal object Addons {
     // ---- The published catalog ---------------------------------------------------
 
     /** Where the website says the owner's server is; the catalog is only ever read from one of these. */
-    private const val CONFIG_URL = "https://justshivv.github.io/Opentune/usage-config.json"
+    private const val CONFIG_URL = "https://lokesh12dev.github.io/newforgemusic/usage-config.json"
     private val CATALOG_HOSTS = setOf("addon-opentune.rethinknow.in", "opentune-usage.create-a-new-site-with-sites.workers.dev")
     private const val REFRESH_MS = 15 * 60_000L
     @Volatile private var lastCheck = 0L
@@ -300,7 +300,7 @@ internal object Addons {
 }
 
 /**
- * Verifying this computer for OpenTune's own add-on, as the web player does
+ * Verifying this computer for Forge's own add-on, as the web player does
  * (web/app/src/addons/verification.ts): a key made here, approved once from
  * the official app on the listener's phone, then every request to that server
  * signed with it. Access lasts up to 12 hours; the key never leaves this computer.

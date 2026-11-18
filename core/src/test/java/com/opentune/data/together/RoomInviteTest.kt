@@ -18,6 +18,6 @@ class RoomInviteTest {
         assertNull(RoomCode.parse("https://justshivv.github.io.evil.test/Opentune/together/#code=${code.raw}"))
         assertNull(RoomCode.parse("https://justshivv.github.io/Other/together/#code=${code.raw}"))
         assertNull(RoomCode.parse("${code.appLink}AAAA"))
-        assertNull(RoomCode.parse("https://justshivv.github.io/Opentune/together/"))
+        assertNull(RoomCode.parse("https://lokesh12dev.github.io/newforgemusic/together/"))
     }
 }

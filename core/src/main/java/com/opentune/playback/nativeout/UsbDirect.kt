@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * OpenTune driving a USB DAC itself: it finds the DAC, asks for permission to
+ * Forge driving a USB DAC itself: it finds the DAC, asks for permission to
  * use it, takes its audio interfaces from Android (so nothing else plays on
  * it meanwhile), sets the DAC to each track's sample rate, picks the stream
  * format that carries the track's bits whole, and hands the native side (see

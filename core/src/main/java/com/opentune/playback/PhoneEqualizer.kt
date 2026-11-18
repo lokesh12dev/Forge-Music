@@ -8,7 +8,7 @@ import android.media.audiofx.AudioEffect
 
 /**
  * The phone's own equalizer (Samsung's, Dolby's, the stock one), opened on
- * OpenTune's playback. It shapes the sound only while "System audio effects"
+ * Forge's playback. It shapes the sound only while "System audio effects"
  * lets the phone's effects in.
  */
 object PhoneEqualizer {

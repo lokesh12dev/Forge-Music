@@ -16,7 +16,7 @@ import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 
 /**
- * A like in OpenTune saved to the listener's Spotify Liked Songs too, and an
+ * A like in Forge saved to the listener's Spotify Liked Songs too, and an
  * unlike taken back out, while Spotify is connected and the setting is on.
  * Spotify's suggestions (its song radio, Daily Mixes, Discover Weekly) learn
  * from what's saved there. Plays aren't sent: a song heard here streamed from

@@ -45,7 +45,7 @@ class CommentsSheetScreenshotTest {
             c("1", "@nightdrive", "This song hits different at 2 am on an empty road.", "2 months ago", "12K", "184"),
             c("2", "@TheWeeknd", "Thank you for listening, all of you.", "1 year ago", "429K", "976", creator = true),
             c("3", "@ana.m", "The synths in the bridge are unreal. Still on repeat in 2026.", "3 weeks ago", "1.6K"),
-            c("4", "@kabir", "Who else is here from OpenTune?", "1 day ago", null, "2"),
+            c("4", "@kabir", "Who else is here from Forge?", "1 day ago", null, "2"),
         ), next = null, createParams = null)
         compose.setContent {
             OpenTuneTheme(ThemeSettings(mode = ThemeMode.DARK, dynamicColor = false)) {

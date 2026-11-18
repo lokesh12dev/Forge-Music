@@ -55,7 +55,7 @@ enum class AutomixPerformance(val label: String, val summary: String, val thread
 }
 
 /**
- * How much OpenTune spends on smoothness and moving extras, against battery. Choosing one
+ * How much Forge spends on smoothness and moving extras, against battery. Choosing one
  * sets the switches behind it at once ([performanceApplied]); any of them can be changed after.
  */
 @Serializable
@@ -89,9 +89,9 @@ fun performanceApplied(ui: InterfaceSettings, pb: PlaybackSettings, profile: Per
 /** How music reaches the DAC unchanged. */
 @Serializable
 enum class BitPerfectOutput(val label: String, val summary: String) {
-    OFF("Off", "Audio goes through Android's mixer and OpenTune's effects"),
+    OFF("Off", "Audio goes through Android's mixer and Forge's effects"),
     USB_ANDROID("USB DAC", "Android 14 opens the DAC at each track's own rate and bit depth, without mixing or resampling"),
-    USB_DIRECT("USB DAC (direct driver)", "OpenTune drives the DAC itself, on any Android version, at each track's own rate. Asks for USB permission"),
+    USB_DIRECT("USB DAC (direct driver)", "Forge drives the DAC itself, on any Android version, at each track's own rate. Asks for USB permission"),
     BUILT_IN("Built-in DAC (exclusive)", "For phones and players with their own DAC: the headphone or line output opened exclusively at each track's rate. Not every device allows it"),
     HEADPHONE_JACK("Headphone jack", "The phone's own 3.5 mm jack at each track's rate and bit depth: Android 14's bit-perfect path where the phone offers it for the jack, otherwise the jack opened exclusively. Not every phone allows it"),
 }
@@ -360,7 +360,7 @@ data class PlaybackSettings(
     val recommender: Recommender = Recommender.YOUTUBE,
     val listeningHistoryTarget: com.opentune.data.history.ListeningHistoryTarget = com.opentune.data.history.ListeningHistoryTarget.YOUTUBE_MUSIC,
     val pauseListeningHistory: Boolean = false,
-    /** Listens made in YouTube Music or other apps on the account come into OpenTune's history. */
+    /** Listens made in YouTube Music or other apps on the account come into Forge's history. */
     val importAccountHistory: Boolean = true,
     /**
      * Smart shuffle can be chosen: the player's shuffle button gets a third

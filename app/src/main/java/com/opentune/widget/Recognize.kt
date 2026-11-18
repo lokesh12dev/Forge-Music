@@ -13,7 +13,7 @@ import com.opentune.R
 
 /**
  * Ways to name a song from outside the app: a home-screen widget and a
- * Quick Settings tile. Both open OpenTune listening at once; Android only
+ * Quick Settings tile. Both open Forge listening at once; Android only
  * lets an app on screen use the microphone, so it can't listen hidden.
  */
 object RecognizeLaunch {

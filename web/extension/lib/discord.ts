@@ -28,17 +28,17 @@ declare const __DISCORD_APP_ID__: string;
  */
 
 /**
- * OpenTune's own Discord application, from the build (DISCORD_APP_ID). Empty
- * in a build without one: the card still goes up named OpenTune, with the
+ * Forge's own Discord application, from the build (DISCORD_APP_ID). Empty
+ * in a build without one: the card still goes up named Forge, with the
  * cover as a plain link and no application behind its buttons.
  */
 export const APPLICATION_ID: string = __DISCORD_APP_ID__;
 const GATEWAY = 'wss://gateway.discord.gg/?v=9&encoding=json';
 const API = 'https://discord.com/api/v9';
-const PROJECT_URL = 'https://github.com/justshivv/Opentune';
+const PROJECT_URL = 'https://github.com/lokesh12dev/newforgemusic';
 const DEFAULT_BUTTON_1 = 'Listen on YouTube Music';
-const DEFAULT_BUTTON_2 = 'Visit OpenTune';
-const APP_NAME = 'OpenTune';
+const DEFAULT_BUTTON_2 = 'Visit Forge';
+const APP_NAME = 'Forge';
 
 const INITIAL_RECONNECT_MS = 1_000;
 const MAX_RECONNECT_MS = 60_000;
@@ -207,7 +207,7 @@ export class Gateway {
       try {
         this.onMessage(JSON.parse(String(event.data)) as Payload);
       } catch (error) {
-        console.warn('OpenTune: Discord gateway payload', error);
+        console.warn('Forge: Discord gateway payload', error);
       }
     };
     socket.onclose = (event) => {
@@ -252,7 +252,7 @@ export class Gateway {
   }
 
   private drop(why: string): void {
-    console.info(`OpenTune: Discord gateway dropped (${why})`);
+    console.info(`Forge: Discord gateway dropped (${why})`);
     this.ready = false;
     this.socket?.close();
   }
@@ -534,7 +534,7 @@ export async function setPresence(track: DiscordNowPlaying | null, options: Disc
   await ensureGateway(held.token).sendActivity(presence);
 }
 
-/** Every OpenTune page has gone: nobody is playing, so the card comes down with the socket. */
+/** Every Forge page has gone: nobody is playing, so the card comes down with the socket. */
 export function allPagesClosed(): void {
   gateway?.clearActivity();
   idleTimer = setTimeout(closeGateway, 2_000);

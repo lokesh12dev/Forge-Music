@@ -17,7 +17,7 @@ import java.nio.ByteOrder
 import java.util.concurrent.CopyOnWriteArraySet
 
 /**
- * Opens each song's output on OpenTune's own bit-perfect paths when one is
+ * Opens each song's output on Forge's own bit-perfect paths when one is
  * chosen: the USB DAC through the app's own driver, or the phone's DAC through
  * an exclusive AAudio stream. Anything they can't take (offload, tunnelling,
  * a format the device doesn't offer, no DAC, no permission) opens on
@@ -169,7 +169,7 @@ internal abstract class NativeOutput(
     override fun setPreferredDevice(audioDeviceInfo: android.media.AudioDeviceInfo?) = Unit
 }
 
-/** A song on the USB DAC, through OpenTune's own driver. */
+/** A song on the USB DAC, through Forge's own driver. */
 @OptIn(UnstableApi::class)
 internal class UsbDirectOutput(
     private val session: UsbDirect.Session,
@@ -206,7 +206,7 @@ internal class UsbDirectOutput(
     private companion object { const val RING_MS = 300 }
 }
 
-/** A song on the phone's own DAC, through an AAudio stream OpenTune has to itself. */
+/** A song on the phone's own DAC, through an AAudio stream Forge has to itself. */
 @OptIn(UnstableApi::class)
 internal class AAudioExclusiveOutput private constructor(
     private val handle: Long,

@@ -61,7 +61,7 @@ fun main(args: Array<String>) {
 }
 
 /**
- * `OpenTune --self-check`: loads what the installer must carry (FFmpeg,
+ * `Forge --self-check`: loads what the installer must carry (FFmpeg,
  * GraalJS, SQLite), prints what it found and exits, failing if any is
  * missing. For checking a packaged build, where the trimmed Java runtime
  * could be short of a module the tests' full one has.

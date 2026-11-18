@@ -285,7 +285,7 @@ class PlaybackService : MediaLibraryService() {
                     .apply {
                         // Only the main player takes the DAC exclusively: the bridge opening its
                         // own output would switch the DAC under the song that's playing.
-                        // OpenTune's own bit-perfect outputs first (USB driver, exclusive built-in DAC),
+                        // Forge's own bit-perfect outputs first (USB driver, exclusive built-in DAC),
                         // then Android 14's USB path, then Android's usual output.
                         if (exclusive) setAudioOutputProvider(com.opentune.playback.nativeout.NativeOutputProvider(ExclusiveUsbOutputProvider(
                             androidx.media3.exoplayer.audio.AudioTrackAudioOutputProvider.Builder(context).build())))
@@ -1269,7 +1269,7 @@ class PlaybackService : MediaLibraryService() {
      * Tells the system a music session is open, so the phone's own sound
      * effects (Dolby Atmos, Samsung's SoundAlive and Adapt Sound, the system
      * equalizer and similar) attach to this app the way they do to the stock
-     * players. Without this many phones leave OpenTune unprocessed and it
+     * players. Without this many phones leave Forge unprocessed and it
      * sounds flatter and quieter next to other apps.
      */
     private var effectSession = C.AUDIO_SESSION_ID_UNSET

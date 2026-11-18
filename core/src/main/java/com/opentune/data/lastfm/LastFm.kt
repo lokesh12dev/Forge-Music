@@ -28,7 +28,7 @@ import okhttp3.FormBody
 import okhttp3.Request
 
 /** Last.fm mobile authentication exchanges the password once for a private session key.
- * The build supplies OpenTune's application credentials. Existing sessions keep their own
+ * The build supplies Forge's application credentials. Existing sessions keep their own
  * signing key pair so an app update never breaks their queued scrobbles.
  */
 object LastFm {

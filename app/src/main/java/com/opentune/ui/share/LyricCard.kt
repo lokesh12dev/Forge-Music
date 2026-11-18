@@ -69,7 +69,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * A picture of a few lines of a song to share: the lines large on a dark
- * card washed with the cover's colour, the OpenTune mark and name at the top,
+ * card washed with the cover's colour, the Forge mark and name at the top,
  * and the cover, title and artist at the foot. As a post it's 4:5; as a story
  * it's 9:16, the size Instagram and WhatsApp stories take.
  */
@@ -215,7 +215,7 @@ fun LyricCardSheet(song: Song, lines: List<String>, startAt: Int, onDismiss: () 
     val list = rememberLazyListState()
     // Open on the line being sung, a little way down so the lines before it show too.
     LaunchedEffect(Unit) { if (pickable && startAt > 0) list.scrollToItem((startAt - 2).coerceAtLeast(0)) }
-    val fileName = "OpenTune-lyrics-${song.videoId}${if (story) "-story" else ""}.png"
+    val fileName = "Forge-lyrics-${song.videoId}${if (story) "-story" else ""}.png"
     FloatingCard(
         onDismiss = onDismiss,
         title = "Share lyrics",

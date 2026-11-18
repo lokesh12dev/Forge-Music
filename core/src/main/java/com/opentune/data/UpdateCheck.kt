@@ -34,7 +34,7 @@ import kotlinx.serialization.json.longOrNull
 import okhttp3.Request
 
 /**
- * Whether a newer OpenTune is published on GitHub Releases, and which of its
+ * Whether a newer Forge is published on GitHub Releases, and which of its
  * APKs fits this phone.
  *
  * GitHub's API allows 60 requests an hour from one address, and on mobile

@@ -33,13 +33,13 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * Only OpenTune's own add-on servers receive proofs. No APK-wide shared secret.
+ * Only Forge's own add-on servers receive proofs. No APK-wide shared secret.
  * Each server keeps its own sign-ins, so the device verifies with each one apart,
  * with its own hardware key and session.
  */
 object FirstPartyAddonAuth {
     class VerificationFailure(message: String, cause: Throwable? = null) : IOException(message, cause)
-    /** The add-on on OpenTune's own server (services/lossless-addon/vps); browsers pair through it. */
+    /** The add-on on Forge's own server (services/lossless-addon/vps); browsers pair through it. */
     const val ORIGIN = "https://addon-opentune.rethinknow.in"
     /** The same add-on as a Cloudflare Worker, where it ran first. */
     const val WORKER_ORIGIN = "https://opentune-lossless-addon.create-a-new-site-with-sites.workers.dev"
@@ -84,7 +84,7 @@ object FirstPartyAddonAuth {
             val stage = when (request.url.encodedPath) {
                 "/auth/challenge" -> "Verification challenge"
                 "/auth/enroll" -> "Device enrollment"
-                else -> "OpenTune verification"
+                else -> "Forge verification"
             }
             val code = data.optString("code").takeIf { it.matches(Regex("[A-Z0-9_]{3,64}")) }
             throw VerificationFailure("$stage failed (HTTP ${response.code}${code?.let { "; $it" }.orEmpty()}); retry on a supported, locked device")
@@ -93,12 +93,12 @@ object FirstPartyAddonAuth {
     }
     private fun post(origin: String, path: String, body: String) = Request.Builder().url(origin + path).post(body.toRequestBody("application/json".toMediaType())).build()
     private suspend fun session(origin: String): JSONObject {
-        check(::dir.isInitialized) { "OpenTune verification has not initialized" }
+        check(::dir.isInitialized) { "Forge verification has not initialized" }
         val file = fileFor(origin)
         val alias = aliasFor(origin)
         val old = runCatching { JSONObject(file.readText()) }.getOrNull()
         if (old != null && old.optLong("expires") > System.currentTimeMillis() + old.optLong("offset") + 60_000 && store.containsAlias(alias)) return old
-        if (System.currentTimeMillis() < (blockedUntil[origin] ?: 0L)) throw VerificationFailure("${blockedReason[origin] ?: "OpenTune device verification failed"}; retry in a minute")
+        if (System.currentTimeMillis() < (blockedUntil[origin] ?: 0L)) throw VerificationFailure("${blockedReason[origin] ?: "Forge device verification failed"}; retry in a minute")
         try {
             val challenge = call(Request.Builder().url("$origin/auth/challenge").build())
             val offset = challenge.getLong("serverTime") - System.currentTimeMillis()
@@ -112,7 +112,7 @@ object FirstPartyAddonAuth {
                     .build())
             }.generateKeyPair()
             val chain = JSONArray(store.getCertificateChain(alias).map { Base64.encodeToString(it.encoded, Base64.NO_WRAP) })
-            val input = JSONObject().put("challenge", value).put("chain", chain).put("proof", sign(alias, "OpenTune-Enrollment-v1\n$value"))
+            val input = JSONObject().put("challenge", value).put("chain", chain).put("proof", sign(alias, "Forge-Enrollment-v1\n$value"))
             val result = call(post(origin, "/auth/enroll", input.toString())).put("offset", offset)
             // Tokens are useless without the non-exportable keystore key and are never backed up.
             val temporary = File(file.parentFile, file.name + ".tmp")
@@ -125,10 +125,10 @@ object FirstPartyAddonAuth {
             blockedUntil[origin] = System.currentTimeMillis() + 60_000
             val reason = when (e) {
                 is VerificationFailure -> e.message.orEmpty()
-                is java.net.SocketTimeoutException -> "OpenTune verification timed out; retry on a working connection"
-                is java.net.UnknownHostException -> "Cannot reach OpenTune verification; check your connection or DNS"
+                is java.net.SocketTimeoutException -> "Forge verification timed out; retry on a working connection"
+                is java.net.UnknownHostException -> "Cannot reach Forge verification; check your connection or DNS"
                 is java.security.GeneralSecurityException -> "Android could not create the hardware verification key; a supported, locked device is required"
-                else -> "OpenTune device verification failed; use the official build on a supported, locked device"
+                else -> "Forge device verification failed; use the official build on a supported, locked device"
             }
             blockedReason[origin] = reason
             throw VerificationFailure(reason, e)
@@ -136,7 +136,7 @@ object FirstPartyAddonAuth {
     }
     suspend fun authorize(request: Request, body: String = ""): Request = withContext(Dispatchers.IO) {
         val origin = "https://${request.url.host}"
-        require(request.url.scheme == "https" && request.url.port == 443 && origin in ORIGINS) { "Device proofs cannot leave OpenTune's source" }
+        require(request.url.scheme == "https" && request.url.port == 443 && origin in ORIGINS) { "Device proofs cannot leave Forge's source" }
         mutexes.computeIfAbsent(origin) { Mutex() }.withLock {
             val alias = aliasFor(origin)
             val session = session(origin)
@@ -145,7 +145,7 @@ object FirstPartyAddonAuth {
             val nonce = b64(ByteArray(24).also { SecureRandom().nextBytes(it) })
             val path = request.url.encodedPath + (request.url.encodedQuery?.let { "?$it" } ?: "")
             val canonical = listOf("OpenTune-Addon-v1", token, time, nonce, request.method, path, sha(body)).joinToString("\n")
-            request.newBuilder().header("User-Agent", "OpenTune/verified-addon-v1")
+            request.newBuilder().header("User-Agent", "Forge/verified-addon-v1")
                 .header("Authorization", "Bearer $token").header("X-OpenTune-Time", time)
                 .header("X-OpenTune-Nonce", nonce).header("X-OpenTune-Signature", sign(alias, canonical)).build()
         }

@@ -63,7 +63,7 @@ internal class UpdateInstall(private val context: android.content.Context, priva
     fun start(onHandedOver: () -> Unit = {}) {
         if (!Updater.canInstall(context)) {
             runCatching { context.startActivity(Updater.allowInstallsIntent(context)) }
-            error = "Allow OpenTune to install apps, then tap Update again."
+            error = "Allow Forge to install apps, then tap Update again."
             return
         }
         error = null
@@ -118,7 +118,7 @@ fun UpdateDialog(found: UpdateCheck.Release, onDismiss: () -> Unit, onNotNow: (U
 
     FloatingCard(
         onDismiss = onDismiss,
-        title = "A new OpenTune",
+        title = "A new Forge",
         dismissible = progress == null,
         actions = {
             Column(Modifier.fillMaxWidth().padding(horizontal = 6.dp)) {

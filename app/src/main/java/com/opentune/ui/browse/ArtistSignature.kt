@@ -147,7 +147,7 @@ internal object WhiteInk : Transformation() {
 /**
  * Settings' artist-signature rows: the switch, and the service's address,
  * checked against its health address before it's kept. Blank goes back to
- * OpenTune's default service.
+ * Forge's default service.
  */
 @Composable
 internal fun ArtistSignatureSettings(startEditing: Boolean = false) {

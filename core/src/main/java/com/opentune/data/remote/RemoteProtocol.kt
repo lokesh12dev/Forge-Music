@@ -6,7 +6,7 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
 /**
- * The phone as a remote for OpenTune on a TV. A phone and a TV that have been paired once
+ * The phone as a remote for Forge on a TV. A phone and a TV that have been paired once
  * (see [RemoteInvite]) talk over the home network, each message sealed with the key made at
  * pairing; this file is what they say to each other.
  */

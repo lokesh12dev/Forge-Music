@@ -182,8 +182,8 @@ object DiscordLogin {
 
     /**
      * A page that shows hCaptcha's puzzle for [captcha], to be loaded with discord.com as
-     * its address (hCaptcha checks the site), calling `OpenTune.solved(answer)` once
-     * it's solved and `OpenTune.failed(reason)` if it can't be.
+     * its address (hCaptcha checks the site), calling `Forge.solved(answer)` once
+     * it's solved and `Forge.failed(reason)` if it can't be.
      */
     fun captchaPage(captcha: Step.Captcha, dark: Boolean): String {
         val site = JSONObject.quote(captcha.siteKey)
@@ -197,13 +197,13 @@ function ready() {
   try {
     var id = hcaptcha.render('box', {
       sitekey: $site, theme: '${if (dark) "dark" else "light"}',
-      callback: function (t) { OpenTune.solved(t); },
-      'error-callback': function (e) { OpenTune.failed(String(e)); },
-      'expired-callback': function () { OpenTune.failed('expired'); }
+      callback: function (t) { Forge.solved(t); },
+      'error-callback': function (e) { Forge.failed(String(e)); },
+      'expired-callback': function () { Forge.failed('expired'); }
     });
     var rq = $rq;
     if (rq) hcaptcha.setData(id, { rqdata: rq });
-  } catch (e) { OpenTune.failed(String(e)); }
+  } catch (e) { Forge.failed(String(e)); }
 }
 </script>
 <script src="https://js.hcaptcha.com/1/api.js?render=explicit&onload=ready&recaptchacompat=off" async defer></script>

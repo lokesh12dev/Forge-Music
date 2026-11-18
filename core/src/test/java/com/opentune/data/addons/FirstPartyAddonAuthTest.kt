@@ -12,7 +12,7 @@ class FirstPartyAddonAuthTest {
         assertTrue(FirstPartyAddonAuth.protects("$origin/archive/stream/recording".toHttpUrl()))
         for (url in listOf(
             "$origin/monochrome/manifest.json", "$origin/archive/health", "$origin/",
-            "https://public-addon.example/search?q=OpenTune",
+            "https://public-addon.example/search?q=Forge",
             "https://public-addon.example/auth/web/info",
             "https://losslessbridge.de.deplexo.com/stream/123",
             "https://bluebit.jucepe0929.workers.dev/search?q=test",

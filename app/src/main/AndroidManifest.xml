@@ -51,7 +51,7 @@
     <uses-feature android:name="android.hardware.location" android:required="false" />
     <uses-feature android:name="android.hardware.location.network" android:required="false" />
     <uses-feature android:name="android.hardware.wifi" android:required="false" />
-    <!-- OpenTune's own USB DAC driver (Bit-perfect output, direct driver). -->
+    <!-- Forge's own USB DAC driver (Bit-perfect output, direct driver). -->
     <uses-feature android:name="android.hardware.usb.host" android:required="false" />
 
     <application
@@ -88,7 +88,7 @@
                  activity starting over. -->
             <!-- The TV home screen's row of apps. -->
             <!-- Open YouTube Music and YouTube links: songs, playlists, albums, channels.
-                 Not autoVerify: these domains aren't ours, so the user picks OpenTune. -->
+                 Not autoVerify: these domains aren't ours, so the user picks Forge. -->
             <intent-filter tools:ignore="AppLinkWarning">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -111,6 +111,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="justshivv.github.io" android:pathPrefix="/Opentune/pair/" />
+                <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/newforgemusic/pair/" />
             </intent-filter>
             <!-- Invites to a Listen together room: opentune://together/<code>. -->
             <intent-filter>
@@ -126,13 +127,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="justshivv.github.io" android:pathPrefix="/Opentune/together/" />
+                <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/newforgemusic/together/" />
             </intent-filter>
-            <!-- "Play … on OpenTune" from the Assistant. -->
+            <!-- "Play … on Forge" from the Assistant. -->
             <intent-filter>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <!-- Shared links ("Share to OpenTune"). -->
+            <!-- Shared links ("Share to Forge"). -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -239,7 +241,7 @@
                 android:resource="@xml/share_paths" />
         </provider>
 
-        <!-- Shows OpenTune as a media app in Android Auto. -->
+        <!-- Shows Forge as a media app in Android Auto. -->
         <meta-data
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />

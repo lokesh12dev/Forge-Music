@@ -100,7 +100,7 @@ import kotlin.math.sin
 import kotlinx.coroutines.launch
 
 /**
- * Finding out what's playing nearby. A round button with the OpenTune mark
+ * Finding out what's playing nearby. A round button with the Forge mark
  * in it; tapped, it listens, and while it does the button glows, wobbles
  * with the sound and sends rings out. What it finds comes up in its place,
  * ready to play, and stays in a list underneath.
@@ -180,7 +180,7 @@ fun RecognizeScreen(contentPadding: PaddingValues, onPlay: (Song) -> Unit, onBac
                                     listening -> "Listening…"
                                     stage == Stage.MISSED -> "Couldn't name that one"
                                     stage == Stage.FAILED -> (state as? Recognizer.State.Failed)?.reason ?: "Something went wrong"
-                                    denied -> "OpenTune needs the microphone to listen"
+                                    denied -> "Forge needs the microphone to listen"
                                     else -> "Tap to find the song playing near you"
                                 },
                                 style = MaterialTheme.typography.titleMedium,
