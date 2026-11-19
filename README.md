@@ -20,6 +20,10 @@ Jetpack Compose and Media3. It plays music from YouTube Music without
 requiring an account, API key or server of your own. Sign in only if you
 want account-backed likes and playlists.
 
+<p align="center">
+  <img src="docs/screenshots/forge-desktop.png" alt="Forge Music Player" width="100%">
+</p>
+
 ## Features
 
 - Search and browse YouTube Music, with a fast-start player, queue, autoplay
