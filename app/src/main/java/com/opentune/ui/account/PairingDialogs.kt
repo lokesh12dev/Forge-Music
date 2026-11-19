@@ -28,8 +28,8 @@ object PairingLinks {
     val pending = MutableStateFlow<PairingOffer?>(null)
     fun receive(intent: Intent?): Boolean {
         val uri = intent?.data ?: return false
-        val own = uri.scheme == "opentune" && uri.host == "pair"
-        val site = uri.scheme == "https" && ((uri.host == "justshivv.github.io" && uri.path == "/Opentune/pair/") || (uri.host == "lokesh12dev.github.io" && uri.path == "/newforgemusic/pair/"))
+        val own = (uri.scheme == "opentune" || uri.scheme == "forge") && uri.host == "pair"
+        val site = uri.scheme == "https" && ((uri.host == "justshivv.github.io" && uri.path == "/Opentune/pair/") || (uri.host == "lokesh12dev.github.io" && (uri.path == "/newforgemusic/pair/" || uri.path == "/Forge-Music/pair/")))
         if (!own && !site) return false
         pending.value = runCatching { PairingOffer.parse(uri.fragment.orEmpty()) }.getOrNull()
         return true

@@ -94,7 +94,7 @@ jobs:
             | if $ipa == null then empty else
             {
               name: "Forge",
-              identifier: "io.github.justshivv.opentune",
+              identifier: "io.github.lokesh12dev.newforgemusic",
               subtitle: "A free music player",
               sourceURL: ($base + "/ios/source.json"),
               website: ($base + "/"),
@@ -103,7 +103,7 @@ jobs:
               apps: [{
                 name: "Forge",
                 bundleIdentifier: "com.opentune.ios",
-                developerName: "justshivv",
+                developerName: "M. Lokesh",
                 subtitle: "Every song. No ads. No account.",
                 localizedDescription: "A free, open-source music player for the YouTube Music catalogue, with synced lyrics, radio once the queue runs out, background play, lock-screen controls and AirPlay. An early version of the Android app.",
                 iconURL: ($base + "/ios/icon.png"),

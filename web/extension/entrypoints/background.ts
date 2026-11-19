@@ -41,13 +41,13 @@ function allowed(sender: Browser.runtime.MessageSender): boolean {
   if (origin === OWN_ORIGIN && sender.id === browser.runtime.id) return true;
   if (!origin || !ALLOWED_ORIGINS.has(origin) || !sender.url) return false;
   const url = new URL(sender.url);
-  const playerPath =
-    origin === 'https://lokesh12dev.github.io'
-      ? '/newforgemusic/player/'
-      : origin === 'https://justshivv.github.io'
-        ? '/Opentune/player/'
-        : null;
-  return playerPath === null || url.pathname.startsWith(playerPath);
+  if (origin === 'https://lokesh12dev.github.io') {
+    return url.pathname.startsWith('/Forge-Music/player/') || url.pathname.startsWith('/newforgemusic/player/');
+  }
+  if (origin === 'https://justshivv.github.io') {
+    return url.pathname.startsWith('/Opentune/player/');
+  }
+  return true;
 }
 
 function failure(id: string, error: unknown): BridgeResponse {

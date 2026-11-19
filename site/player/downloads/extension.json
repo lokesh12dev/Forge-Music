@@ -1,0 +1,8 @@
+{
+  "version": "0.1.7",
+  "builtAt": "2026-11-19T08:56:12.491Z",
+  "files": {
+    "chrome": "forge-extension-chrome (0.1.7).zip",
+    "firefox": "forge-extension-firefox (0.1.7).zip"
+  }
+}

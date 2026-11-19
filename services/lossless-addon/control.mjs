@@ -7,7 +7,7 @@ export const SECTION_IDS = ['speed-dial', 'quick-picks', 'mixes', 'spotify-mixes
 export const defaults = () => ({
   sections: SECTION_IDS.map(id => ({ id, enabled: true, title: '' })),
   banners: [], playlists: [], sources: null,
-  links: { github: 'https://github.com/justshivv/Opentune', discord: 'https://discord.gg/6udrCVh5n', web: 'https://justshivv.github.io/Opentune/player/', tv: 'https://justshivv.github.io/Opentune/' },
+  links: { github: 'https://github.com/lokesh12dev/newforgemusic', discord: 'https://discord.gg/6udrCVh5n', web: 'https://lokesh12dev.github.io/Forge-Music/player/', tv: 'https://lokesh12dev.github.io/Forge-Music/' },
   network: { timeoutMs: 8000, retries: 2 }, communityPrompts: true,
 });
 function requireValue(ok, message) { if (!ok) throw new Error(message); }

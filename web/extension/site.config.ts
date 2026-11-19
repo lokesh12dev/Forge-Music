@@ -8,7 +8,7 @@ export const SITE_ORIGINS = [
 ];
 export function matchPatternsFor(origins: string[]): string[] {
   return origins.flatMap((origin) => {
-    if (origin === PRODUCTION_ORIGIN) return [origin + '/newforgemusic/player/*'];
+    if (origin === PRODUCTION_ORIGIN) return [origin + '/Forge-Music/player/*', origin + '/newforgemusic/player/*'];
     if (origin === LEGACY_PRODUCTION_ORIGIN) return [origin + '/Opentune/player/*'];
     return [new URL(origin).origin + '/*'];
   });

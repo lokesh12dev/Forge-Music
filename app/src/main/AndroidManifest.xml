@@ -110,7 +110,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="justshivv.github.io" android:pathPrefix="/Opentune/pair/" />
+                <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/Forge-Music/pair/" />
                 <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/newforgemusic/pair/" />
             </intent-filter>
             <!-- Invites to a Listen together room: opentune://together/<code>. -->
@@ -118,6 +118,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="forge" android:host="together" />
                 <data android:scheme="opentune" android:host="together" />
             </intent-filter>
             <!-- GitHub Pages cannot publish assetlinks.json at the domain root;
@@ -126,7 +127,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="justshivv.github.io" android:pathPrefix="/Opentune/together/" />
+                <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/Forge-Music/together/" />
                 <data android:scheme="https" android:host="lokesh12dev.github.io" android:pathPrefix="/newforgemusic/together/" />
             </intent-filter>
             <!-- "Play … on Forge" from the Assistant. -->

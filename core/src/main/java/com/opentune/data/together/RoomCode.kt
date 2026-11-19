@@ -58,7 +58,7 @@ class RoomCode private constructor(val raw: String) {
             val candidate = when {
                 (uri?.scheme.equals("opentune", ignoreCase = true) || uri?.scheme.equals("forge", ignoreCase = true)) && uri?.host == "together" -> uri.path.trim('/')
                 uri?.scheme == "https" && (uri.host == "lokesh12dev.github.io" || uri.host == "justshivv.github.io") &&
-                    (uri.path.trimEnd('/') == "/newforgemusic/together" || uri.path.trimEnd('/') == "/Opentune/together") ->
+                    (uri.path.trimEnd('/') == "/Forge-Music/together" || uri.path.trimEnd('/') == "/newforgemusic/together" || uri.path.trimEnd('/') == "/Opentune/together") ->
                     uri.fragment?.takeIf { it.startsWith("code=") }?.removePrefix("code=") ?: return null
                 uri?.scheme != null -> return null
                 else -> value
@@ -71,7 +71,7 @@ class RoomCode private constructor(val raw: String) {
         /** A valid invite URL or printed code in a shared message. */
         fun find(text: String?): RoomCode? {
             text ?: return null
-            Regex("""(?:https://|opentune://)\S+""").findAll(text).forEach { match ->
+            Regex("""(?:https://|opentune://|forge://)\S+""").findAll(text).forEach { match ->
                 parse(match.value.trimEnd('.', ',', ')'))?.let { return it }
             }
             val group = "[$ALPHABET]{4}"

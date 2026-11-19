@@ -288,7 +288,7 @@ compose.desktop {
             }
             linux {
                 iconFile.set(project.file("packaging/icons/AppIcon.png"))
-                debMaintainer = "78946189+justshivv@users.noreply.github.com"
+                debMaintainer = "mr.mlokesh7@gmail.com"
                 rpmLicenseType = "GPL-3.0"
             }
         }

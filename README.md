@@ -1,7 +1,11 @@
 <p align="center">
+  <img src="docs/logo.png" alt="Forge Logo" width="128" height="128">
+</p>
+
+<p align="center">
   <a href="https://github.com/lokesh12dev/newforgemusic/releases/latest"><b>Download Forge for Android</b></a>
   &nbsp;·&nbsp;
-  <a href="https://lokesh12dev.github.io/newforgemusic/">Website</a>
+  <a href="https://lokesh12dev.github.io/Forge-Music/player/#/home">Web Player</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/lokesh12dev/newforgemusic/releases">Releases</a>
 </p>
@@ -45,7 +49,7 @@ want account-backed likes and playlists.
 | Wear OS | Watch app source is in the wear directory. |
 | iOS and iPadOS | Native project for iOS 16+. It is not distributed through the App Store or TestFlight. |
 | Desktop | Early Windows, macOS and Linux app in the desktop directory. |
-| Web player | Preview at [lokesh12dev.github.io/newforgemusic/player](https://lokesh12dev.github.io/newforgemusic/player/); the companion extension is required for playback. |
+| Web player | Available at [lokesh12dev.github.io/Forge-Music/player](https://lokesh12dev.github.io/Forge-Music/player/#/home); companion extension provides seamless playback. |
 
 ## Install on Android
 

@@ -3,8 +3,8 @@ import { defineConfig } from 'wxt';
 import { LYRIC_ORIGINS, patternOf } from './lib/lyricHosts';
 import { matchPatternsFor, SITE_ORIGINS } from './site.config';
 
-/** OPENTUNE_STORE_BUILD=1 for a Chrome Web Store upload. */
-const STORE_BUILD = process.env.OPENTUNE_STORE_BUILD === '1';
+/** FORGE_STORE_BUILD=1 for a Chrome Web Store upload. */
+const STORE_BUILD = process.env.FORGE_STORE_BUILD === '1' || process.env.OPENTUNE_STORE_BUILD === '1';
 
 /**
  * Discord presence is user-token automation (prompt §7.3), so it is a build
@@ -62,7 +62,7 @@ export default defineConfig({
       ? {
           browser_specific_settings: {
             gecko: {
-              id: 'web-extension@opentune.app',
+              id: 'web-extension@forge.app',
               strict_min_version: '128.0',
               data_collection_permissions: { required: ['none'] },
             },

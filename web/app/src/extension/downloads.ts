@@ -21,7 +21,7 @@ export interface Download {
  * has loaded, the configured URLs and the unversioned names stand in.
  */
 export function downloadsFor(published: PublishedExtension | null): Download[] {
-  const folder = (browser: Browser) => `opentune-extension-${browser}${published ? ` (${published.version})` : ''}`;
+  const folder = (browser: Browser) => `forge-extension-${browser}${published ? ` (${published.version})` : ''}`;
   return [
     {
       browser: 'chrome',

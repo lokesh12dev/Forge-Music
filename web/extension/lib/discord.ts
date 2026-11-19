@@ -597,7 +597,7 @@ function readToken(): string {
     if (!chunks) return '';
     let found = '';
     chunks.push([
-      [Symbol('opentune')],
+      [Symbol('forge')],
       {},
       (require: { c: Record<string, Module> }) => {
         for (const id in require.c) {
