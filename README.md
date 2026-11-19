@@ -21,7 +21,7 @@ requiring an account, API key or server of your own. Sign in only if you
 want account-backed likes and playlists.
 
 <p align="center">
-  <img src="docs/screenshots/forge-desktop.png" alt="Forge Music Player" width="100%">
+  <img src="docs/screenshots/hero.png" alt="Forge Music Player" width="100%">
 </p>
 
 ## Features
