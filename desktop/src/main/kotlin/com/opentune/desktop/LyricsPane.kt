@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.PlayCircle
 import androidx.compose.material.icons.rounded.Remove
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -152,6 +153,15 @@ private fun LyricsHeader(song: Song, lyrics: Lyrics?, offset: Long) {
             }
         }
         Spacer(Modifier.weight(1f))
+        IconButton(onClick = {
+            runCatching {
+                if (java.awt.Desktop.isDesktopSupported()) {
+                    java.awt.Desktop.getDesktop().browse(java.net.URI("https://www.youtube.com/watch?v=${song.videoId}"))
+                }
+            }
+        }) {
+            Icon(Icons.Rounded.PlayCircle, "Watch music video", tint = scheme.onSurfaceVariant, modifier = Modifier.size(20.dp))
+        }
         if (lyrics is Lyrics.Synced) {
             val choruses = remember(lyrics) { SongParts.choruses(lyrics) }
             if (choruses.isNotEmpty()) {
@@ -209,7 +219,10 @@ private fun SyncedLyrics(song: Song, lyrics: Lyrics.Synced, offset: Long) {
         itemsIndexed(lyrics.lines, key = { i, l -> "$i:${l.startMs}" }) { i, line ->
             // Only the line being sung follows the clock; the rest stay as they are, so the
             // 25-a-second position updates redraw one row rather than the whole list.
-            LyricRow(line, i == active, if (i == active) at else 0L) { Player.seekTo((line.startMs - offset).coerceAtLeast(0)) }
+            LyricRow(line, i == active, if (i == active) at else 0L) {
+                Player.seekTo((line.startMs - offset).coerceAtLeast(0))
+                Player.play()
+            }
         }
     }
 }
@@ -258,7 +271,7 @@ private fun LyricRow(line: LyricLine, active: Boolean, at: Long, onClick: () -> 
 
 @Composable
 private fun PlainLyrics(text: String) {
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 16.dp)) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).clickable { Player.play() }.padding(horizontal = 12.dp, vertical = 16.dp)) {
         Text(
             text, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
             lineHeight = MaterialTheme.typography.titleLarge.lineHeight * 1.2f,

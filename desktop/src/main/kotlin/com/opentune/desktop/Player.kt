@@ -176,6 +176,20 @@ object Player {
         _playing.value = wanted
     }
 
+    fun play() {
+        val e = synchronized(gate) { engine } ?: return current?.let { open(_index.value) } ?: Unit
+        if (!_playing.value) {
+            wanted = true
+            e.play()
+            synchronized(gate) { incoming }?.let { it.play() }
+            _playing.value = true
+        }
+    }
+
+    fun pause() {
+        pauseAll()
+    }
+
     private fun pauseAll() {
         wanted = false
         synchronized(gate) { listOfNotNull(engine, incoming) }.forEach { it.pause() }

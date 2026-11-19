@@ -239,10 +239,10 @@ fun DesktopApp(startPanel: SidePanel? = null) {
                         }
                     }
                     Box(Modifier.weight(1f).fillMaxHeight()) {
-                        // The page is what the frosted player bar blurs; every page starts below it.
+                        // The page scrolls under the top navigation and leaves room above the docked bottom player bar.
                         CompositionLocalProvider(
-                            LocalPageTop provides TOP_BAR_HEIGHT + DesktopWindow.topInset,
-                            LocalPageBottom provides 40.dp,
+                            LocalPageTop provides TOP_NAV_HEIGHT + DesktopWindow.topInset,
+                            LocalPageBottom provides BOTTOM_BAR_HEIGHT + 16.dp,
                             com.opentune.ui.components.LocalHazeState provides haze.takeIf { !ui.reduceBlur },
                         ) {
                             Box(Modifier.fillMaxSize().hazeSource(haze, zIndex = 1f)) {
@@ -262,12 +262,17 @@ fun DesktopApp(startPanel: SidePanel? = null) {
                                     onBack = { back() },
                                 )
                             }
-                            TopBar(
-                                song, canGoBack = history.isNotEmpty(), onBack = back,
+                            TopNav(
+                                canGoBack = history.isNotEmpty(),
+                                onBack = back,
+                                modifier = Modifier.align(Alignment.TopCenter),
+                            )
+                            BottomBar(
+                                song,
                                 panel = panel.takeIf { panelShown },
                                 onPanel = { p -> panel = if (panel == p && panelShown) null else p },
                                 onOpenPlayer = { playerOpen = true },
-                                modifier = Modifier.align(Alignment.TopCenter),
+                                modifier = Modifier.align(Alignment.BottomCenter),
                                 panelRoom = roomForPanel,
                             )
                         }

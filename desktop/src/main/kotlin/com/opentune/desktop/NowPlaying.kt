@@ -623,6 +623,18 @@ private fun MoreButton(song: Song) {
         ) { Icon(Icons.Rounded.MoreHoriz, "More", Modifier.size(26.dp)) }
         DropdownMenu(open, onDismissRequest = { open = false }) {
             DropdownMenuItem(
+                text = { Text("Watch music video") },
+                leadingIcon = { Icon(Icons.Rounded.PlayArrow, null) },
+                onClick = {
+                    open = false
+                    runCatching {
+                        if (java.awt.Desktop.isDesktopSupported()) {
+                            java.awt.Desktop.getDesktop().browse(java.net.URI("https://www.youtube.com/watch?v=${song.videoId}"))
+                        }
+                    }
+                },
+            )
+            DropdownMenuItem(
                 text = { Text("Add to playlist") },
                 leadingIcon = { Icon(Icons.AutoMirrored.Rounded.PlaylistAdd, null) },
                 onClick = { open = false; adding = true },

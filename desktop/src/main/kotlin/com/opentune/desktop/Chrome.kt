@@ -103,8 +103,11 @@ import kotlinx.coroutines.delay
 internal val SIDEBAR_WIDTH = 248.dp
 internal val SIDEBAR_FOLDED = 72.dp
 internal val PANEL_WIDTH = 320.dp
-/** How tall the player bar across the top of the page is, under the window's own title bar. */
-internal val TOP_BAR_HEIGHT = 64.dp
+/** How tall the navigation bar across the top of the page is, under the window's own title bar. */
+internal val TOP_NAV_HEIGHT = 44.dp
+internal val TOP_BAR_HEIGHT = TOP_NAV_HEIGHT
+/** How tall the player bar across the bottom of the page is. */
+internal val BOTTOM_BAR_HEIGHT = 72.dp
 /** How much of the sidebar's and side column's own colour covers the window's backdrop: less over Windows' material. */
 @Composable
 private fun chromeAlpha(): Float {
@@ -236,19 +239,47 @@ private fun SideRow(icon: ImageVector, label: String, selected: Boolean, folded:
     ) { row() }
 }
 
-// ---- The player bar ----------------------------------------------------------
+// ---- Navigation & Player Bars -------------------------------------------------
 
 /**
- * Across the top of the page, frosted over what scrolls under it: back, then
+ * Across the top of the page: back button, and window drag area for moving the window.
+ */
+@Composable
+internal fun TopNav(
+    canGoBack: Boolean,
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val frost = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
+    androidx.compose.foundation.layout.BoxWithConstraints(modifier.fillMaxWidth().height(TOP_NAV_HEIGHT + DesktopWindow.topInset)) {
+        Box(
+            Modifier.matchParentSize().layout { measurable, constraints ->
+                val over = 1.dp.roundToPx()
+                val glass = measurable.measure(
+                    constraints.copy(minWidth = constraints.maxWidth + 2 * over, maxWidth = constraints.maxWidth + 2 * over, minHeight = constraints.maxHeight + over, maxHeight = constraints.maxHeight + over),
+                )
+                layout(constraints.maxWidth, constraints.maxHeight) { glass.place(-over, -over) }
+            }.glass(RectangleShape, frost),
+        )
+        // Dragging moves the window
+        Box(Modifier.matchParentSize().windowDrag())
+        Box(Modifier.fillMaxSize().padding(top = DesktopWindow.topInset)) {
+            Row(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                HoverIcon(Icons.AutoMirrored.Rounded.ArrowBack, "Back", enabled = canGoBack, size = 34.dp, iconSize = 20.dp, onClick = onBack)
+            }
+        }
+    }
+}
+
+/**
+ * Docked across the bottom of the page, frosted over what scrolls under it:
  * shuffle, previous, play, next and repeat; the song in a box in the middle
  * with a thin seekable line along its foot (click it for the full player);
  * then the volume and the lyrics, queue and Now playing columns.
  */
 @Composable
-internal fun TopBar(
+internal fun BottomBar(
     song: Song?,
-    canGoBack: Boolean,
-    onBack: () -> Unit,
     panel: SidePanel?,
     onPanel: (SidePanel) -> Unit,
     onOpenPlayer: () -> Unit,
@@ -261,39 +292,36 @@ internal fun TopBar(
     val shuffled by Player.shuffled.collectAsState()
     val repeat by Player.repeat.collectAsState()
     val has = song != null
-    val frost = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
-    androidx.compose.foundation.layout.BoxWithConstraints(modifier.fillMaxWidth().height(TOP_BAR_HEIGHT + DesktopWindow.topInset)) {
-        // Frosted over the page sliding under it; solid with blur turned off. Drawn a hair past the
-        // bar's top and sides, so the glass's hairline shows only along its foot, where the page meets it.
+    val frost = MaterialTheme.colorScheme.background.copy(alpha = 0.84f)
+    androidx.compose.foundation.layout.BoxWithConstraints(modifier.fillMaxWidth().height(BOTTOM_BAR_HEIGHT)) {
+        // Frosted over the page sliding under it:
         Box(
             Modifier.matchParentSize().layout { measurable, constraints ->
                 val over = 1.dp.roundToPx()
                 val glass = measurable.measure(
                     constraints.copy(minWidth = constraints.maxWidth + 2 * over, maxWidth = constraints.maxWidth + 2 * over, minHeight = constraints.maxHeight + over, maxHeight = constraints.maxHeight + over),
                 )
-                layout(constraints.maxWidth, constraints.maxHeight) { glass.place(-over, -over) }
+                layout(constraints.maxWidth, constraints.maxHeight) { glass.place(-over, 0) }
             }.glass(RectangleShape, frost),
         )
-        // The song keeps its room as the bar narrows (a column open beside the page, a small
-        // window): first the volume folds to its speaker, then shuffle and repeat step aside.
+        // Hairline top border separating player bar from content
+        Box(
+            Modifier.fillMaxWidth().height(1.dp).align(Alignment.TopCenter)
+                .background(MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
+        )
         val roomy = maxWidth >= 900.dp
         val full = maxWidth >= 700.dp
-        // Its empty parts move the window, where the app draws the title bar.
-        Box(Modifier.matchParentSize().windowDrag())
-        Box(Modifier.fillMaxSize().padding(top = DesktopWindow.topInset)) {
-        Row(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            HoverIcon(Icons.AutoMirrored.Rounded.ArrowBack, "Back", enabled = canGoBack, size = 34.dp, iconSize = 20.dp, onClick = onBack)
-            Spacer(Modifier.width(8.dp))
+        Row(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalAlignment = Alignment.CenterVertically) {
             if (full) HoverIcon(Icons.Rounded.Shuffle, if (shuffled) "Shuffle on" else "Shuffle", enabled = has, lit = shuffled, size = 32.dp, iconSize = 18.dp, onClick = Player::toggleShuffle)
             HoverIcon(Icons.Rounded.SkipPrevious, "Previous", enabled = has, size = 34.dp, iconSize = 22.dp, onClick = Player::previous)
             Box(
-                Modifier.padding(horizontal = 4.dp).size(36.dp).clip(CircleShape)
+                Modifier.padding(horizontal = 4.dp).size(38.dp).clip(CircleShape)
                     .background(MaterialTheme.colorScheme.onSurface.copy(alpha = if (has) 1f else 0.3f))
                     .clickable(enabled = has, onClick = Player::toggle),
                 contentAlignment = Alignment.Center,
             ) {
                 if (loading) CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = MaterialTheme.colorScheme.surface)
-                else Icon(if (playing) Icons.Rounded.Pause else Icons.Rounded.PlayArrow, if (playing) "Pause" else "Play", tint = MaterialTheme.colorScheme.surface, modifier = Modifier.size(22.dp))
+                else Icon(if (playing) Icons.Rounded.Pause else Icons.Rounded.PlayArrow, if (playing) "Pause" else "Play", tint = MaterialTheme.colorScheme.surface, modifier = Modifier.size(24.dp))
             }
             HoverIcon(Icons.Rounded.SkipNext, "Next", enabled = has, size = 34.dp, iconSize = 22.dp, onClick = Player::next)
             if (full) HoverIcon(
@@ -313,9 +341,21 @@ internal fun TopBar(
                 HoverIcon(if (panel == SidePanel.NOW) Icons.Rounded.Info else Icons.Outlined.Info, "Now playing", enabled = has, lit = panel == SidePanel.NOW, size = 32.dp, iconSize = 18.dp) { onPanel(SidePanel.NOW) }
             }
         }
-        }
     }
 }
+
+/** Legacy alias pointing to BottomBar for backwards compatibility. */
+@Composable
+internal fun TopBar(
+    song: Song?,
+    canGoBack: Boolean,
+    onBack: () -> Unit,
+    panel: SidePanel?,
+    onPanel: (SidePanel) -> Unit,
+    onOpenPlayer: () -> Unit,
+    modifier: Modifier = Modifier,
+    panelRoom: Boolean = true,
+) = BottomBar(song, panel, onPanel, onOpenPlayer, modifier, panelRoom)
 
 /** The song in the middle of the player bar: cover, names and time, the line along its foot; a quiet note when nothing plays. */
 @Composable
