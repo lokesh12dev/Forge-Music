@@ -43,7 +43,7 @@ import okhttp3.Request
  * such limit, and the APK's address is built from the release's file names.
  */
 object UpdateCheck {
-    private const val LATEST = "https://api.github.com/repos/forge/Forge/releases/latest"
+    private const val LATEST = "https://api.github.com/repos/lokesh12dev/Forge-Music/releases/latest"
     private const val LATEST_PAGE = "https://github.com/lokesh12dev/Forge-Music/releases/latest"
     private const val DOWNLOADS = "https://github.com/lokesh12dev/Forge-Music/releases/download"
     const val RELEASES_PAGE = "https://github.com/lokesh12dev/Forge-Music/releases"

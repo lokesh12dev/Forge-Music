@@ -5,14 +5,14 @@ reports, fixes and small features — under the terms below.
 
 ## Reporting a problem
 
-Open an issue at https://github.com/lokesh12dev/Forge/issues with what you
+Open an issue at https://github.com/lokesh12dev/Forge-Music/issues with what you
 did, what you expected, and what happened. Screenshots and steps to reproduce
 help most. For security issues, please say so in the issue title and describe
 the impact without posting exploit details.
 
 ## Discussing ideas
 
-Use https://github.com/lokesh12dev/Forge/discussions before building anything
+Use https://github.com/lokesh12dev/Forge-Music/discussions before building anything
 large. Forge is intentionally focused; a proposal may be declined even when
 it is well made.
 

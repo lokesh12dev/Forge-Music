@@ -34,7 +34,7 @@ object UpdateLock {
     /** How many releases the installed version may trail the newest one by. */
     const val MAX_BEHIND = 2
     private const val SITE_LIST = "https://lokesh12dev.github.io/Forge-Music/releases.json"
-    private const val API_LIST = "https://api.github.com/repos/forge/Forge/releases?per_page=20"
+    private const val API_LIST = "https://api.github.com/repos/lokesh12dev/Forge-Music/releases?per_page=20"
     private const val EVERY_MS = 60L * 60 * 1000
     private const val PREFS = "update-lock"
     private const val K_VERSIONS = "versions"
