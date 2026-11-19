@@ -15,7 +15,7 @@ function devExtensionId(): string {
 }
 
 export default defineConfig({
-  base: process.env.FORGE_WEB_BASE || process.env.OPENTUNE_WEB_BASE || '/newforgemusic/player/',
+  base: process.env.FORGE_WEB_BASE || './',
   plugins: [react(), tailwindcss()],
   define: {
     DEV_EXTENSION_ID: JSON.stringify(devExtensionId()),

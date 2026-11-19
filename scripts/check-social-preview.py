@@ -5,7 +5,10 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-BASE = 'https://lokesh12dev.github.io/newforgemusic/'
+import os
+repo = os.environ.get('GITHUB_REPOSITORY', 'lokesh12dev/Forge-Music')
+repo_name = repo.split('/')[1] if '/' in repo else repo
+BASE = f'https://lokesh12dev.github.io/{repo_name}/'
 ROOT = Path(__file__).resolve().parents[1]
 
 class Metadata(HTMLParser):
