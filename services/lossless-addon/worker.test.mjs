@@ -70,7 +70,7 @@ test('Monochrome search maps identity, excludes unavailable tracks, resolves mea
   assert.equal(response.status, 200); assert.equal(stream.url, 'https://tracks.monochrome.st/track/recording-1');
   assert.equal(stream.sampleRate, 96000); assert.equal(stream.bitDepth, 24); assert.equal(stream.duration, 180);
   assert.equal(calls[1].options.headers.Range, 'bytes=0-65535');
-  assert.match(calls[1].options.headers['User-Agent'], /^OpenTune-/);
+  assert.match(calls[1].options.headers['User-Agent'], /^Forge-/);
   assert.equal(calls[1].options.headers.Origin, undefined);
 });
 test('CD FLAC stays CD quality; arbitrary or malformed content never earns a FLAC label', () => {
