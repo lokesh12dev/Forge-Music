@@ -28,6 +28,14 @@ want account-backed likes and playlists.
   <img src="docs/screenshots/forge-player.png" alt="Forge Android player screen" width="320">
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/forge-features.png" alt="Forge features screen" width="320">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/forge-library.png" alt="Forge library screen" width="320">
+</p>
+
 ## Features
 
 - Search and browse YouTube Music, with a fast-start player, queue, autoplay
