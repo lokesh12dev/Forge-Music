@@ -15,7 +15,7 @@ from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent / 'site'
 SKIP = {'player', 'usage'}
-LINK = re.compile(r'(?P<attr>href|src)="(?P<url>(?!https?:|//|data:)[^"?#]+\.(?:css|js))"')
+LINK = re.compile(r'(?P<attr>href|src)="(?P<url>(?!https?:|//|data:)[^"?#]+\.(?:css|js))(?:\?[^"]*)?"')
 
 
 def stamp(page: Path) -> int:
