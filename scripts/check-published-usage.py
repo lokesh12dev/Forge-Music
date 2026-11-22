@@ -20,7 +20,7 @@ for attempt in range(6):
                 assert sha256(response.read()).hexdigest() == expected
         with urlopen(Request(home + '?preview=' + str(int(time())), headers={'Cache-Control':'no-cache'}), timeout=20) as response:
             metadata = response.read().decode()
-        image = 'img/share-card-v3.jpg'
+        image = 'img/share-card-v4.jpg'
         assert image in metadata and 'summary_large_image' in metadata
         with urlopen(home + image, timeout=20) as response:
             published = response.read()
