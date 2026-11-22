@@ -118,7 +118,21 @@ h3 { font-size: var(--step-1); font-weight: 680; line-height: 1.25; letter-spaci
 .btn-sm { min-height: 40px; padding: 8px 16px; font-size: 0.93rem; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; isolation: isolate; overflow: clip; padding: clamp(48px, 9vw, 120px) 0 0; text-align: center; }
+.hero { position: relative; isolation: isolate; overflow: clip; padding: clamp(40px, 7vw, 96px) 0 0; text-align: center; }
+/* A faint dot grid and a few drifting sparks: texture behind the copy, never noise. */
+.hero-grid {
+  position: absolute; inset: 0 0 auto; height: min(860px, 96vw); z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgb(255 255 255 / 0.11) 1px, transparent 1px);
+  background-size: 30px 30px; opacity: 0.5;
+  -webkit-mask-image: radial-gradient(54% 58% at 50% 16%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(54% 58% at 50% 16%, #000 0%, transparent 100%);
+}
+.hero-spark { position: absolute; z-index: -1; width: 18px; height: 18px; fill: var(--coral-text); filter: drop-shadow(0 0 12px rgb(255 107 87 / 0.8)); animation: twinkle 4.5s ease-in-out infinite alternate; pointer-events: none; }
+.spark-a { left: 9%; top: 21%; }
+.spark-b { right: 8%; top: 15%; width: 27px; height: 27px; fill: #c3b4ff; filter: drop-shadow(0 0 14px rgb(123 92 255 / 0.85)); animation-delay: -1.4s; }
+.spark-c { right: 17%; top: 47%; width: 12px; height: 12px; fill: var(--amber); filter: drop-shadow(0 0 10px rgb(255 181 71 / 0.9)); animation-delay: -2.6s; }
+@keyframes twinkle { from { opacity: 0.25; transform: scale(0.75) rotate(-8deg); } to { opacity: 0.9; transform: scale(1.1) rotate(8deg); } }
+@media (max-width: 900px) { .hero-spark { display: none; } }
 /* The light: three soft blobs that drift slowly behind the phones. */
 .hero::before, .hero::after {
   content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: 50%; filter: blur(70px);
@@ -138,6 +152,20 @@ h3 { font-size: var(--step-1); font-weight: 680; line-height: 1.25; letter-spaci
 }
 @keyframes drift { from { transform: translate3d(-3%, 0, 0) scale(0.96) rotate(-4deg); } to { transform: translate3d(3%, -3%, 0) scale(1.05) rotate(4deg); } }
 .hero-copy { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; }
+/* The app icon, floating on its own light: the first thing you see. */
+.hero-icon { position: relative; display: block; width: 88px; height: 88px; margin-bottom: 22px; border-radius: 27px; }
+.hero-icon img {
+  width: 100%; height: 100%; border-radius: 27px;
+  box-shadow: 0 26px 60px -18px rgb(255 79 109 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.5);
+  animation: bob 7s ease-in-out infinite alternate;
+}
+.hero-icon::before {
+  content: ""; position: absolute; inset: -38%; z-index: -1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgb(255 107 87 / 0.42), rgb(123 92 255 / 0.2) 55%, transparent 76%);
+  filter: blur(18px);
+}
+.hero-icon:hover img { box-shadow: 0 30px 70px -18px rgb(255 79 109 / 0.85), 0 0 0 1px rgb(255 255 255 / 0.24), inset 0 1px 0 rgb(255 255 255 / 0.5); }
+@keyframes bob { from { transform: translateY(2px); } to { transform: translateY(-6px); } }
 .release-chip {
   display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; padding: 5px 16px 5px 5px; max-width: 100%;
   border: 1px solid var(--line-2); border-radius: 999px; background: var(--glass);
@@ -152,6 +180,19 @@ h3 { font-size: var(--step-1); font-weight: 680; line-height: 1.25; letter-spaci
 .hero .btn-row { justify-content: center; }
 .hero-meta { margin: 20px 0 0; font-size: var(--step--1); color: var(--ink-3); }
 .hero-meta a { color: var(--ink-2); }
+/* Small proof-of-what-you-get pills, with the same line icons as the cards. */
+.hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; margin: 26px 0 0; padding: 0; }
+.hero-pills li {
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px 7px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--glass); color: var(--ink-2); font-size: var(--step--1); white-space: nowrap;
+}
+.hero-pills svg { width: 15px; height: 15px; flex: none; color: var(--coral-text); }
+@media (max-width: 560px) {
+  .hero-icon { width: 76px; height: 76px; margin-bottom: 18px; }
+  .hero-pills { margin-top: 22px; gap: 6px; }
+  .hero-pills li { padding: 6px 11px 6px 10px; }
+  .hero-pills li:nth-child(4) { display: none; }
+}
 
 /* Three phones, fanned: the full-cover player in front, lyrics and the halo player behind. */
 .fan { position: relative; display: grid; grid-template-columns: 1fr; justify-items: center; margin-top: clamp(48px, 7vw, 88px); height: clamp(420px, 62vw, 700px); }
@@ -160,6 +201,21 @@ h3 { font-size: var(--step-1); font-weight: 680; line-height: 1.25; letter-spaci
 .fan .left { transform: translateX(-74%) rotate(-8deg); }
 .fan .right { transform: translateX(74%) rotate(8deg); }
 .fan .front { z-index: 2; }
+/* A soft stage of light and a thin orbit, so the phones sit in the scene. */
+.fan::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; bottom: -2%; translate: -50% 24%;
+  width: min(980px, 130vw); height: min(340px, 42vw); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgb(255 107 87 / 0.32), rgb(123 92 255 / 0.18) 58%, transparent 82%);
+  filter: blur(46px);
+}
+.fan::after {
+  content: ""; position: absolute; z-index: 0; left: 50%; bottom: -26px; translate: -50% 0;
+  width: min(760px, 94vw); height: 200px; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  transform: perspective(700px) rotateX(68deg);
+  box-shadow: inset 0 0 90px rgb(255 107 87 / 0.16);
+}
+.fan .side { z-index: 1; }
 @media (max-width: 560px) {
   .fan { height: 470px; }
   .fan .phone { width: 220px; }
@@ -184,7 +240,12 @@ h3 { font-size: var(--step-1); font-weight: 680; line-height: 1.25; letter-spaci
 .hero-copy > *:nth-child(3) { animation-delay: 0.1s; }
 .hero-copy > *:nth-child(4) { animation-delay: 0.15s; }
 .hero-copy > *:nth-child(5) { animation-delay: 0.2s; }
+.hero-copy > *:nth-child(6) { animation-delay: 0.25s; }
+.hero-copy > *:nth-child(7) { animation-delay: 0.3s; }
 @keyframes settle { from { transform: translateY(14px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after, .hero-icon img, .hero-spark, .fan .phone, .hero-copy > * { animation: none !important; }
+}
 
 /* Where it runs: a row of glass pills, under the phones. */
 .platforms { position: relative; z-index: 3; margin-top: -40px; padding-bottom: 8px; }
