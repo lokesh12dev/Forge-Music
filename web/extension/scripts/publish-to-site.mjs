@@ -1,12 +1,13 @@
 // Zips the built extension for the site's Extension page and writes the
 // manifest the page checks for updates:
 //
-//   web/app/public/downloads/opentune-extension-chrome (<version>).zip
-//   web/app/public/downloads/opentune-extension-firefox (<version>).zip
+//   web/app/public/downloads/forge-extension-chrome.zip
+//   web/app/public/downloads/forge-extension-firefox.zip
+//   web/app/public/downloads/forge-extension-<browser> (<version>).zip
 //   web/app/public/downloads/extension.json    { version, builtAt, files }
 //
-// Each zip holds a single folder (opentune-extension-<browser> (<version>)/) rather than
-// loose files, so "Extract here" leaves one tidy folder to load unpacked.
+// The stable names avoid URL-escaping problems. Each zip holds a single
+// versioned folder so "Extract here" leaves one tidy folder to load unpacked.
 //
 //   corepack pnpm --dir web/extension package   (builds both, then runs this)
 
@@ -18,7 +19,7 @@ import { zipSync } from 'fflate';
 const output = fileURLToPath(new URL('../.output/', import.meta.url));
 const target = fileURLToPath(new URL('../../app/public/downloads/', import.meta.url));
 mkdirSync(target, { recursive: true });
-// Each version's zips are named for it; the previous ones go.
+// Keep only the current versioned zips and stable download aliases.
 for (const name of readdirSync(target)) if (/^(?:forge|opentune)-extension-.*\.zip$/.test(name)) rmSync(join(target, name));
 
 function filesUnder(dir) {
@@ -40,16 +41,19 @@ for (const [browser, folder] of Object.entries(builds)) {
   }
   version = manifest.version;
 
-  // The version in brackets, on the zip and the folder inside it: "forge-extension-chrome (0.4.3)".
+  // Keep the version on the folder inside both archives: "forge-extension-chrome (0.4.3)".
   const parent = `forge-extension-${browser} (${manifest.version})`;
   const entries = {};
   for (const file of filesUnder(root)) {
     entries[`${parent}/${relative(root, file).split(sep).join('/')}`] = readFileSync(file);
   }
-  const name = `${parent}.zip`;
-  writeFileSync(join(target, name), zipSync(entries, { level: 9 }));
-  files[browser] = name;
-  console.log(`${folder} -> app/public/downloads/${name} (${parent}/, v${version})`);
+  const archive = zipSync(entries, { level: 9 });
+  const versionedName = `${parent}.zip`;
+  const stableName = `forge-extension-${browser}.zip`;
+  writeFileSync(join(target, versionedName), archive);
+  writeFileSync(join(target, stableName), archive);
+  files[browser] = stableName;
+  console.log(`${folder} -> app/public/downloads/${stableName} (${parent}/, v${version})`);
 }
 
 writeFileSync(

@@ -16,9 +16,8 @@ export interface Download {
 }
 
 /**
- * The two builds, as published (extension.json): the zip and the folder in it
- * carry the version, "opentune-extension-chrome (0.4.3)". Before that file
- * has loaded, the configured URLs and the unversioned names stand in.
+ * The published archives use stable download names; each archive contains a
+ * versioned folder. The configured fallback URLs use those same stable names.
  */
 export function downloadsFor(published: PublishedExtension | null): Download[] {
   const folder = (browser: Browser) => `forge-extension-${browser}${published ? ` (${published.version})` : ''}`;

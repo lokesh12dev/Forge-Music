@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { config } from '@/config';
 import { useExtension } from './useExtension';
 
-/** Where a published zip is served: the site's downloads folder, its name escaped (it has spaces and brackets). */
+/** Where a published zip is served relative to the site's downloads manifest. */
 export function downloadUrl(name: string): string {
   return new URL(encodeURIComponent(name), new URL(config.extensionManifestUrl, location.origin)).toString();
 }
